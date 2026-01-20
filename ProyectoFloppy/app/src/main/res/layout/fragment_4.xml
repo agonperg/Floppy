@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Fragment_4">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_media_previous"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_top_toTopOf="parent"
+        app:tint="#004A8C"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tvRuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="Mengibar > Jaén"
+        android:textColor="#004A8C"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_top_toBottomOf="@id/tvTitulo"
+        tools:layout_editor_absoluteY="109dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="#D1D1D1"
+        app:cardCornerRadius="35dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvRuta">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Fecha: 25/11/2025"
+                android:textColor="#454545"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Hora: 17:30h"
+                android:textColor="#454545"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Plazas: 4"
+                android:textColor="#454545"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pago: En persona"
+                android:textColor="#454545"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardConductor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="120dp"
+        app:cardBackgroundColor="#D1D1D1"
+        app:cardCornerRadius="35dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cardInfo">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivUser"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_top_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLabelConductor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Conductor:"
+                android:textColor="#454545"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/ivUser"
+                app:layout_top_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guillermo Hernández"
+                android:textColor="#004A8C"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tvLabelConductor"
+                app:layout_top_toBottomOf="@id/tvLabelConductor"
+                tools:layout_editor_absoluteY="28dp" />
+
+            <RatingBar
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:numStars="4"
+                android:rating="0"
+                app:layout_constraintStart_toStartOf="@id/tvNombre"
+                app:layout_top_toBottomOf="@id/tvNombre"
+                tools:layout_editor_absoluteY="52dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6€/persona"
+                android:textColor="#454545"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_top_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@android:drawable/stat_sys_phone_call"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="#004A8C" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnReservar"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#D1D1D1"
+        android:text="Reservar Plaza"
+        android:textAllCaps="false"
+        android:textColor="#004A8C"
+        android:textStyle="bold"
+        app:cornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnChat"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnChat"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="#D1D1D1"
+        android:src="@android:drawable/stat_notify_chat"
+        app:layout_constraintBottom_toBottomOf="@id/btnReservar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnReservar"
+        app:layout_constraintTop_toTopOf="@id/btnReservar"
+        app:tint="#004A8C" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalles del Viaje:"
+        android:textColor="#004A8C"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_top_toTopOf="parent"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="32dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:text="Mengibar > Jaén"
+        android:hint="Ejemplo: Mengibar > Jaén"
         android:textColor="#004A8C"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:text="Fecha: 25/11/2025"
+                android:hint="Fecha: 25/11/2025"
                 android:textColor="#454545"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:text="Hora: 17:30h"
+                android:hint="Hora: 17:30h"
                 android:textColor="#454545"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:text="Plazas: 4"
+                android:hint="Plazas: 4"
                 android:textColor="#454545"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pago: En persona"
+                android:hint="Pago: En persona"
                 android:textColor="#454545"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -126,7 +126,7 @@
                 android:id="@+id/tvNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guillermo Hernández"
+                android:hint="Pablo Segura"
                 android:textColor="#004A8C"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tvLabelConductor"
@@ -147,11 +147,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="6€/persona"
+                android:layout_marginEnd="16dp"
+                android:hint="6€/persona"
                 android:textColor="#454545"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_top_toTopOf="parent" />
+                app:layout_top_toTopOf="parent"
+                tools:layout_editor_absoluteY="-3dp" />
 
             <ImageView
                 android:layout_width="30dp"

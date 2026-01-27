@@ -2,5 +2,11 @@
     <string name="app_name">ProyectoFloppy</string>
     <string name="olvido_pass">He olvidado mi contraseña</string>
     <string name="crear_cuenta">Crear cuenta</string>
+    <string name="crear_tu_cuenta">Crea tu cuenta</string>
     <string name="inicio_sesion">Iniciar sesión</string>
+    <string name="boton_iniciar_sesion">¿Ya tienes cuenta? Iniciar sesión</string>
+
+
+
+
 </resources>

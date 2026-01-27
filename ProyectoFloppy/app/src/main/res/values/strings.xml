@@ -5,7 +5,19 @@
     <string name="identificacion">¿Qué eres?</string>
     <string name="estudiante">Estudiante</string>
     <string name="infoEstudiante">Con la seleccion Estudiante tendrás acceso al tablón de anuncios, comunidades,  transporte, etc...</string>
-    <string name="infoDocente">Con la seleccion Docente tendrás un acceso más expecífico, podrás crear anuncios, comunidades...</string>
+    <string name="infoDocente">Con la selección Docente tendrás un acceso más específico, podrás crear anuncios, comunidades...</string>
     <string name="docente">Docente</string>
     <string name="btnContinuar">Continuar</string>
+    <string name="titulo_comunidades">Comunidades</string>
+    <string name="btn_unirme_comunidad">Unirme a una comunidad</string>
+    <string name="btn_crear_comunidad">Crear una comunidad</string>
+    <string name="universidad_jaen">Universidad de Jaén</string>
+    <string name="com_derecho">Derecho</string>
+    <string name="com_magisterio">Magisterio</string>
+    <string name="com_infantil">Educación infantil</string>
+    <string name="com_informatica">Ingeniería Informática</string>
+    <string name="nav_tablon">Tablón</string>
+    <string name="nav_comunidades">Comunidades</string>
+    <string name="nav_transporte">Transporte</string>
+    <string name="nav_floppyreal">FloppyReal</string>
 </resources>

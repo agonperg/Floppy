@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="corporativo">#044377</color>
+    <color name="lila_suave">#EBE5F7</color>
+    <color name="gris_fondo_card">#FBF8FF</color>
 
 
 </resources>

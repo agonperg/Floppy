@@ -10,10 +10,9 @@ public class activity_general extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general);
 
-        // Le decimos a Android que meta tu Fragment_comunidades en el hueco
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contenedor_fragments, new fragment_comunidades())
+                    .replace(R.id.fragment_container, new rol())
                     .commit();
         }
     }

@@ -23,7 +23,6 @@
     <string name="hint_web_opcional">Sitio web (opcional)</string>
 
     <string name="titulo_intereses">Indícanos tus\nintereses</string>
-    <string name="btn_agregar_intereses">Agregar intereses</string>
     <string name="int_deportes">Deportes</string>
     <string name="int_ciencia">Ciencia</string>
     <string name="int_ingenieria">Ingeniería</string>

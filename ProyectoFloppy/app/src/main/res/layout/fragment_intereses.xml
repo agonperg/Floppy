@@ -131,7 +131,7 @@
             android:backgroundTint="#5692C6"
             android:paddingHorizontal="32dp"
             android:paddingVertical="12dp"
-            android:text="@string/btn_agregar_intereses"
+            android:text="@string/crear_cuenta"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"

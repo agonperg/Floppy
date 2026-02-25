@@ -58,4 +58,37 @@
     <string name="int_arquitectura">Arquitectura</string>
     <string name="int_musica">Música</string>
 
+    <string name="app_name">Proyecto Floppy</string>
+
+    <string name="title_academias">Academias</string>
+    <string name="academia_ateneo">Academia Ateneo</string>
+    <string name="academia_x">Academia X</string>
+    <string name="resumen_academia">Información relevante de la academia\n(resumen de ella)</string>
+    <string name="label_telefono">Número de telefono:</string>
+    <string name="label_direccion">Dirección:</string>
+    <string name="label_ciudad">Ciudad:</string>
+    <string name="detalle_info_academia">Número de telefono:\n\nDirección:\n\nCiudad:</string>
+
+    <string name="cuatrimestre_1">1º Cuatrimestre</string>
+    <string name="cuatrimestre_2">2º Cuatrimestre</string>
+    <string name="cuatrimestre_3">3º Cuatrimestre</string>
+
+    <string name="title_para_ti">Para ti:</string>
+    <string name="subject_fisica">Fundamentos físicos de la informática</string>
+    <string name="subject_programacion">Fundamentos de programación</string>
+    <string name="subject_algebra">Álgebra</string>
+    <string name="subject_estadistica">Estadística</string>
+    <string name="subject_poo">Programación orientada a objetos</string>
+    <string name="btn_publicar">Publicar</string>
+
+    <string name="hint_nombre_apuntes">Nombre de los apuntes</string>
+    <string name="hint_asignatura">Asignatura</string>
+    <string name="hint_carrera">Carrera</string>
+    <string name="label_subir_documentos">Subir documentos</string>
+    <string name="btn_hecho">Hecho</string>
+
+    <string name="tema_x">Tema X</string>
+
+    <string name="msg_cargando">Verificando cuenta…</string>
+    <string name="msg_error_auth">Error al detectar sesión</string>
 </resources>

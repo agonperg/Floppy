@@ -35,7 +35,16 @@ android {
 }
 
 dependencies {
+    // 2. IMPORTA EL BOM DE FIREBASE (Gestiona las versiones por ti)
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
 
+    // 3. AÑADE LAS LIBRERÍAS ESPECÍFICAS DE FIREBASE
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-database") // Para Realtime Database
+    implementation("com.google.firebase:firebase-auth")     // Para Autenticación (si la usas)
+    implementation("com.google.firebase:firebase-storage")  // Para subir archivos/fotos (PDFs)
+
+    // Tus dependencias actuales
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")

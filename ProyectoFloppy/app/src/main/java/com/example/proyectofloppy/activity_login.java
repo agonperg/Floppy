@@ -10,10 +10,10 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,23 +36,21 @@ public class activity_login extends AppCompatActivity {
         btnOlvidoPass = findViewById(R.id.button);
         btnIrRegistro = findViewById(R.id.button2);
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 iniciarSesion();
             }
         });
+
         btnIrRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(android.R.id.content, new crear_cuenta())
-                        .addToBackStack(null)
-                        .commit();
+                android.content.Intent intent = new android.content.Intent(activity_login.this, activity_general.class);
+                startActivity(intent);
             }
         });
+
         btnOlvidoPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +64,7 @@ public class activity_login extends AppCompatActivity {
         String password = etPassword.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Por favor, rellena correo y contraseña", Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content), "Por favor, rellena correo y contraseña", Snackbar.LENGTH_SHORT).show();
             return;
         }
         auth.signInWithEmailAndPassword(email, password)
@@ -74,9 +72,9 @@ public class activity_login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(activity_login.this, "LOGIN CORRECTO", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content), "LOGIN CORRECTO", Snackbar.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(activity_login.this, "Error: Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content), "Error: Credenciales incorrectas", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -110,9 +108,9 @@ public class activity_login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(activity_login.this, "Correo de recuperación enviado. Revisa tu bandeja.", Toast.LENGTH_LONG).show();
+                            Snackbar.make(findViewById(android.R.id.content), "Correo de recuperación enviado", Snackbar.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(activity_login.this, "Error: No se pudo enviar el correo", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content), "Error al enviar el correo", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -122,8 +120,8 @@ public class activity_login extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser != null) {
-            Toast.makeText(this, "ℹSesión activa detectada (Usuario: " + currentUser.getEmail() + ")", Toast.LENGTH_SHORT).show();
+        if (currentUser != null) {
+            Snackbar.make(findViewById(android.R.id.content), "Sesión activa: " + currentUser.getEmail(), Snackbar.LENGTH_SHORT).show();
         }
     }
 }

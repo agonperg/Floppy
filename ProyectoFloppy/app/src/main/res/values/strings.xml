@@ -1,12 +1,47 @@
 <resources>
     <string name="app_name">ProyectoFloppy</string>
+
     <string name="olvido_pass">He olvidado mi contraseña</string>
     <string name="crear_cuenta">Crear cuenta</string>
+    <string name="siguiente">Siguiente</string>
     <string name="crear_tu_cuenta">Crea tu cuenta</string>
     <string name="inicio_sesion">Iniciar sesión</string>
     <string name="boton_iniciar_sesion">¿Ya tienes cuenta? Iniciar sesión</string>
 
+    <string name="identificacion">Identificación</string>
+    <string name="estudiante">Estudiante</string>
+    <string name="docente">Docente</string>
+    <string name="infoEstudiante">Accede como alumno para ver tus cursos y progresos.</string>
+    <string name="infoDocente">Gestiona tus clases, alumnos y contenidos.</string>
+    <string name="btnContinuar">Continuar</string>
 
+    <string name="hint_academia_ej">Ej. Academia Jesús</string>
+    <string name="hint_contrasena">Contraseña</string>
+    <string name="hint_telefono">Teléfono de contacto</string>
+    <string name="hint_direccion_ej">C. Linares, 17</string>
+    <string name="hint_especializacion">Área/as de especialización</string>
+    <string name="hint_web_opcional">Sitio web (opcional)</string>
 
+    <string name="titulo_intereses">Indícanos tus\nintereses</string>
+    <string name="btn_agregar_intereses">Agregar intereses</string>
+    <string name="int_deportes">Deportes</string>
+    <string name="int_ciencia">Ciencia</string>
+    <string name="int_ingenieria">Ingeniería</string>
+    <string name="int_matematicas">Matemáticas</string>
+    <string name="int_tecnologia">Tecnología</string>
+    <string name="int_programacion">Programación</string>
+    <string name="int_arte">Arte</string>
+    <string name="int_diseno">Diseño</string>
+    <string name="int_humanidades">Humanidades</string>
+    <string name="int_comunicacion">Comunicación</string>
+    <string name="int_psicologia">Psicología</string>
+    <string name="int_medicina">Medicina</string>
+    <string name="int_derecho">Derecho</string>
+    <string name="int_economia">Economía</string>
+    <string name="int_marketing">Marketing</string>
+    <string name="int_educacion">Educación</string>
+    <string name="int_arquitectura">Arquitectura</string>
+    <string name="int_musica">Música</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

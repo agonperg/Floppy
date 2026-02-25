@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +18,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class crear_cuenta extends Fragment {
 
-    private FirebaseAuth auth;
-    private FirebaseFirestore db;
-
     private EditText etNombre, etApellidos, etCorreo, etPassword, etFecha;
     private TextView tvGrado, tvCurso;
-    private View btnCrearCuenta;
+    private View btnCrearCuenta, btnVolverLogin;
 
     public crear_cuenta() {
     }
@@ -49,8 +41,6 @@ public class crear_cuenta extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -73,6 +63,7 @@ public class crear_cuenta extends Fragment {
         tvCurso = view.findViewById(R.id.tvSelectorCourse);
 
         btnCrearCuenta = view.findViewById(R.id.btnCreateAccount);
+        btnVolverLogin = view.findViewById(R.id.btnVolverLogin);
 
         configurarSelectorFecha();
         configurarSelectorGrado();
@@ -81,73 +72,61 @@ public class crear_cuenta extends Fragment {
         btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrarUsuario();
+                irAPantallaIntereses();
+            }
+        });
+
+        btnVolverLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
             }
         });
     }
 
-    private void registrarUsuario() {
-        final String nombre = etNombre.getText().toString().trim();
-        final String apellidos = etApellidos.getText().toString().trim();
-        final String email = etCorreo.getText().toString().trim();
+    private void irAPantallaIntereses() {
+        String nombre = etNombre.getText().toString().trim();
+        String apellidos = etApellidos.getText().toString().trim();
+        String email = etCorreo.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        final String fecha = etFecha.getText().toString().trim();
-        final String grado = tvGrado.getText().toString();
-        final String curso = tvCurso.getText().toString();
+        String fecha = etFecha.getText().toString().trim();
+        String grado = tvGrado.getText().toString().trim();
+        String curso = tvCurso.getText().toString().trim();
 
-        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || password.isEmpty() || fecha.isEmpty()) {
-            Toast.makeText(getContext(), "Por favor, rellena todos los campos", Toast.LENGTH_SHORT).show();
+        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || password.isEmpty() || fecha.isEmpty() || grado.isEmpty() || grado.equals("Selecciona tu grado") || curso.isEmpty() || curso.equals("Selecciona tu curso actual") || curso.equals("Selecciona tu curso")) {
+            com.google.android.material.snackbar.Snackbar.make(requireView(), "Por favor, rellena todos los campos", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Snackbar.make(requireView(), "Por favor, introduce un correo electrónico válido", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
             return;
         }
 
         if (password.length() < 6) {
-            Toast.makeText(getContext(), "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+            Snackbar.make(requireView(), "La contraseña debe tener al menos 6 caracteres", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
             return;
         }
 
-        auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            String userId = auth.getCurrentUser().getUid();
-                            guardarDatosEnFirestore(userId, nombre, apellidos, email, fecha, grado, curso);
-                        } else {
-                            Toast.makeText(getContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+        Bundle bundle = new Bundle();
+        bundle.putString("nombre", nombre);
+        bundle.putString("apellidos", apellidos);
+        bundle.putString("email", email);
+        bundle.putString("password", password);
+        bundle.putString("fecha_nacimiento", fecha);
+        bundle.putString("grado", grado);
+        bundle.putString("curso", curso);
+
+        intereses fragmentIntereses = new intereses();
+        fragmentIntereses.setArguments(bundle);
+
+        androidx.fragment.app.FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragmentIntereses);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
-
-    private void guardarDatosEnFirestore(String userId, String nombre, String apellidos, String email, String fecha, String grado, String curso) {
-        Map<String, Object> usuario = new HashMap<>();
-        usuario.put("id", userId);
-        usuario.put("nombre", nombre);
-        usuario.put("apellidos", apellidos);
-        usuario.put("email", email);
-        usuario.put("fecha_nacimiento", fecha);
-        usuario.put("grado", grado);
-        usuario.put("curso", curso);
-
-        db.collection("users").document(userId).set(usuario)
-                .addOnSuccessListener(unused -> {
-
-                    Toast.makeText(getContext(), "Cuenta creada. Por favor, inicia sesión.", Toast.LENGTH_LONG).show();
-
-                    auth.signOut();
-
-                    if (getParentFragmentManager() != null) {
-                        getParentFragmentManager().popBackStack();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Error al guardar perfil. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show();
-                    if (auth.getCurrentUser() != null) {
-                        auth.getCurrentUser().delete();
-                    }
-                });
-    }
-
 
     private void configurarSelectorFecha() {
         etFecha.setOnClickListener(new View.OnClickListener() {

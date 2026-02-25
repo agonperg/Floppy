@@ -1,7 +1,6 @@
 package com.example.proyectofloppy;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class activity_general extends AppCompatActivity {
@@ -10,5 +9,11 @@ public class activity_general extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new rol())
+                    .commit();
+        }
     }
 }

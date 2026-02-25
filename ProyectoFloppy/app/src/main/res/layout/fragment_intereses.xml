@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/btnVolver"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:padding="12dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#0E4A81" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/titulo_intereses"
+            android:textAlignment="center"
+            android:textColor="#0E4A81"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flowInterests"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:constraint_referenced_ids="cardDeportes,cardCiencia,cardIngenieria,cardMatematicas,cardTecnologia,cardProgramacion,cardArte,cardDiseno,cardHumanidades,cardComunicacion,cardPsicologia,cardMedicina,cardDerecho,cardEconomia,cardMarketing,cardEducacion,cardArquitectura,cardMusica"
+            app:flow_horizontalGap="8dp"
+            app:flow_verticalGap="16dp"
+            app:flow_maxElementsWrap="3"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardDeportes" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_deportes" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardCiencia" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_ciencia" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardIngenieria" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_ingenieria" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardMatematicas" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_matematicas" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardTecnologia" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_tecnologia" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardProgramacion" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_programacion" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardArte" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_arte" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardDiseno" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_diseno" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardHumanidades" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_humanidades" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardComunicacion" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_comunicacion" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardPsicologia" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_psicologia" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardMedicina" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_medicina" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardDerecho" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_derecho" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardEconomia" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_economia" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardMarketing" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_marketing" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardEducacion" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_educacion" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardArquitectura" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_arquitectura" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardMusica" android:layout_width="0dp" android:layout_height="wrap_content" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="8dp" app:cardElevation="0dp" app:strokeColor="#CCCCCC" app:strokeWidth="1dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="10dp" android:textAlignment="center" android:text="@string/int_musica" android:textColor="#333333" android:textSize="12sp" android:textStyle="bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmitInterests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="#5692C6"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="12dp"
+            android:text="@string/btn_agregar_intereses"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flowInterests" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Fragment_4 extends Fragment {
+
+public class Fragment_7 extends Fragment {
+
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -16,12 +18,12 @@ public class Fragment_4 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment_4() {
+    public Fragment_7() {
     }
 
 
-    public static Fragment_4 newInstance(String param1, String param2) {
-        Fragment_4 fragment = new Fragment_4();
+    public static Fragment_7 newInstance(String param1, String param2) {
+        Fragment_7 fragment = new Fragment_7();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -41,6 +43,6 @@ public class Fragment_4 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_4, container, false);
+        return inflater.inflate(R.layout.fragment_7, container, false);
     }
 }

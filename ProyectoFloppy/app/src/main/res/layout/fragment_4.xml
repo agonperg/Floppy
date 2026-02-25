@@ -177,22 +177,10 @@
         android:textStyle="bold"
         app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnChat"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnChat"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="15dp"
-        android:backgroundTint="#D1D1D1"
-        android:src="@android:drawable/stat_notify_chat"
-        app:layout_constraintBottom_toBottomOf="@id/btnReservar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnReservar"
-        app:layout_constraintTop_toTopOf="@id/btnReservar"
-        app:tint="#004A8C" />
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardConductor" />
 
     <TextView
         android:id="@+id/tvTitulo"

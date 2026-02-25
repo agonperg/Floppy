@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Fragment_5">
+    tools:context=".fragment_crear_comunidad">
 
     <TextView
         android:id="@+id/tvCreaTitulo"

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tvTituloComunidades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/titulo_comunidades"
+        android:textColor="@color/corporativo"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUnirme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/lila_suave"
+        android:paddingHorizontal="24dp"
+        android:text="@string/btn_unirme_comunidad"
+        android:textAllCaps="false"
+        android:textColor="@color/corporativo"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/monigote"
+        app:iconGravity="textStart"
+        app:iconTint="@color/corporativo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloComunidades" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvComunidades"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintBottom_toTopOf="@id/btnCrearComunidad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnUnirme"
+        tools:listitem="@layout/item_comunidad" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCrearComunidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/lila_suave"
+        android:paddingHorizontal="24dp"
+        android:text="@string/btn_crear_comunidad"
+        android:textAllCaps="false"
+        android:textColor="@color/corporativo"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_add"
+        app:iconGravity="textStart"
+        app:iconTint="@color/corporativo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

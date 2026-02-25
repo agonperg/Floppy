@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Para ti:"
+        android:text="@string/title_para_ti"
         android:textColor="#0C3E69"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -62,7 +62,7 @@
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Fundamentos físicos de la informática"
+            android:text="@string/subject_fisica"
             android:textColor="#0C3E69"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -76,7 +76,7 @@
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Fundamentos de programación"
+            android:text="@string/subject_programacion"
             android:textColor="#0C3E69"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -90,7 +90,7 @@
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Álgebra"
+            android:text="@string/subject_algebra"
             android:textColor="#0C3E69"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -104,7 +104,7 @@
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Estadística"
+            android:text="@string/subject_estadistica"
             android:textColor="#0C3E69"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -118,7 +118,7 @@
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Programación orientada a objetos"
+            android:text="@string/subject_poo"
             android:textColor="#0C3E69"
             android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
         android:gravity="center"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="Publicar"
+        android:text="@string/btn_publicar"
         android:textColor="#0C3E69"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

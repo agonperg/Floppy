@@ -62,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="Academia X"
+                        android:text="@string/academia_x"
                         android:textColor="#0C3E69"
                         android:textStyle="bold"
                         android:textSize="20sp" />
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Información relevante de la academia\n(resumen de ella)"
+                        android:text="@string/resumen_academia"
                         android:textColor="#0C3E69"
                         android:textStyle="bold"
                         android:textSize="16sp" />
@@ -95,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:text="Número de telefono:\n\nDirección:\n\nCiudad:"
+                        android:text="@string/detalle_info_academia"
                         android:textColor="#0C3E69"
                         android:textStyle="bold"
                         android:textSize="16sp" />

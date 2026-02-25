@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1º Cuatrimestre"
+                android:text="@string/cuatrimestre_1"
                 android:textColor="#0C3E69"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2º Cuatrimestre"
+                android:text="@string/cuatrimestre_2"
                 android:textColor="#0C3E69"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3º Cuatrimestre"
+                android:text="@string/cuatrimestre_3"
                 android:textColor="#0C3E69"
                 android:textSize="32sp"
                 android:textStyle="bold" />

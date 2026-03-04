@@ -12,7 +12,8 @@ public class activity_general extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new rol())
+                    // AQUÍ ESTÁ EL CAMBIO MAGICO:
+                    .replace(R.id.fragment_container, new fragment_comunidades())
                     .commit();
         }
     }

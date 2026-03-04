@@ -37,6 +37,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTituloComunidades" />
 
+    <EditText
+        android:id="@+id/etBuscadorComunidad"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:hint="Buscar..."
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnUnirme" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComunidades"
         android:layout_width="match_parent"
@@ -47,7 +60,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnCrearComunidad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnUnirme"
+        app:layout_constraintTop_toBottomOf="@id/etBuscadorComunidad"
         tools:listitem="@layout/item_comunidad" />
 
     <com.google.android.material.button.MaterialButton

@@ -12,6 +12,18 @@ public class ComunidadAdapter extends RecyclerView.Adapter<ComunidadAdapter.View
 
     private List<Comunidad> listaComunidades;
 
+    // 1. Definimos la interfaz para el clic
+    public interface OnItemClickListener {
+        void onItemClick(Comunidad comunidad);
+    }
+
+    private OnItemClickListener listener;
+
+    // 2. Método para configurar el listener desde el Fragment
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     public ComunidadAdapter(List<Comunidad> listaComunidades) {
         this.listaComunidades = listaComunidades;
     }
@@ -19,7 +31,6 @@ public class ComunidadAdapter extends RecyclerView.Adapter<ComunidadAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Aquí conectamos el adaptador con tu diseño de tarjeta individual (item_comunidad)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comunidad, parent, false);
         return new ViewHolder(view);
     }
@@ -28,14 +39,19 @@ public class ComunidadAdapter extends RecyclerView.Adapter<ComunidadAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comunidad comunidad = listaComunidades.get(position);
 
-        // Asignamos el nombre y la ubicación
         holder.tvNombre.setText(comunidad.getNombre());
         holder.tvUbicacion.setText(comunidad.getUbicacion());
 
-        // Sacamos la primera letra del nombre para ponerla en el circulito morado
         if(comunidad.getNombre() != null && !comunidad.getNombre().isEmpty()){
             holder.tvLetra.setText(comunidad.getNombre().substring(0, 1).toUpperCase());
         }
+
+        // 3. Programamos el clic en toda la tarjeta (itemView)
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(comunidad);
+            }
+        });
     }
 
     @Override
@@ -48,10 +64,14 @@ public class ComunidadAdapter extends RecyclerView.Adapter<ComunidadAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Buscamos los IDs dentro de item_comunidad.xml
             tvLetra = itemView.findViewById(R.id.tvLetraComunidad);
             tvNombre = itemView.findViewById(R.id.tvNombreComunidad);
             tvUbicacion = itemView.findViewById(R.id.tvUbicacionComunidad);
         }
+    }
+
+    public void filtrar(List<Comunidad> listaFiltrada) {
+        this.listaComunidades = listaFiltrada;
+        notifyDataSetChanged();
     }
 }

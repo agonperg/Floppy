@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -43,7 +41,11 @@ public class fragment_parati extends Fragment {
         View btnPublicar = view.findViewById(R.id.btn_publicar);
         if (btnPublicar != null) {
             btnPublicar.setOnClickListener(v -> {
-                Toast.makeText(getContext(), "Publicando...", Toast.LENGTH_SHORT).show();
+                // Aquí hacemos la magia: Navegar a la pantalla de subir
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new fragment_subir()) // Asegúrate de que fragment_container es tu ID real
+                        .addToBackStack(null) // Esto permite volver atrás con el botón del móvil
+                        .commit();
             });
         }
     }

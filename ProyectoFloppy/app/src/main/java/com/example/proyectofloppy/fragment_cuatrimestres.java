@@ -28,16 +28,37 @@ public class fragment_cuatrimestres extends Fragment {
 
         // Botón atrás
         ImageView btnBack = view.findViewById(R.id.btn_back_cuatrimestre);
-        btnBack.setOnClickListener(v -> {
-            if (getActivity() != null) {
-                getActivity().getOnBackPressedDispatcher().onBackPressed();
-            }
-        });
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    getActivity().getOnBackPressedDispatcher().onBackPressed();
+                }
+            });
+        }
 
-        // Ejemplo de clic en una carpeta
         ImageView folder1 = view.findViewById(R.id.folder_1);
-        folder1.setOnClickListener(v -> {
-            // Aquí navegarías a la lista de asignaturas de ese cuatrimestre
-        });
+        if (folder1 != null) {
+            folder1.setOnClickListener(v -> irATemas("1"));
+        }
+
+        ImageView folder2 = view.findViewById(R.id.folder_2);
+        if (folder2 != null) folder2.setOnClickListener(v -> irATemas("2"));
+
+        ImageView folder3 = view.findViewById(R.id.folder_3);
+        if (folder3 != null) folder3.setOnClickListener(v -> irATemas("3"));
+
+    }
+
+    // Método auxiliar para no repetir código
+    private void irATemas(String cuatrimestre) {
+        fragment_temas fragmentTemas = new fragment_temas();
+        Bundle args = new Bundle();
+        args.putString("cuatrimestre_seleccionado", cuatrimestre);
+        fragmentTemas.setArguments(args);
+
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragmentTemas)
+                .addToBackStack(null)
+                .commit();
     }
 }

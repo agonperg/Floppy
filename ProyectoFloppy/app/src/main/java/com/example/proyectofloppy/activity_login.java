@@ -3,6 +3,7 @@ package com.example.proyectofloppy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment; // Añadido para manejar el Fragment
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class activity_login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-
+        auth.signOut();
         etCorreo = findViewById(R.id.correo);
         etPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.button3);
@@ -73,6 +74,14 @@ public class activity_login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Snackbar.make(findViewById(android.R.id.content), "LOGIN CORRECTO", Snackbar.LENGTH_SHORT).show();
+
+                            android.content.Intent intent = new android.content.Intent(activity_login.this, activity_general.class);
+
+                            intent.putExtra("origen", "desde_login");
+
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             Snackbar.make(findViewById(android.R.id.content), "Error: Credenciales incorrectas", Snackbar.LENGTH_SHORT).show();
                         }
@@ -116,12 +125,4 @@ public class activity_login extends AppCompatActivity {
                 });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if (currentUser != null) {
-            Snackbar.make(findViewById(android.R.id.content), "Sesión activa: " + currentUser.getEmail(), Snackbar.LENGTH_SHORT).show();
-        }
-    }
 }

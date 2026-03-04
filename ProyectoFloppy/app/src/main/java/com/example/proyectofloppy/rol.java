@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class rol extends Fragment {
 
-    private CardView cardEstudiante, cardDocente;
+    private CardView cardEstudiante, cardEmpresa;
     private Button btnContinuar;
     private String seleccion = "";
 
@@ -31,7 +31,7 @@ public class rol extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         cardEstudiante = view.findViewById(R.id.cardEstudiante);
-        cardDocente = view.findViewById(R.id.cardDocente);
+        cardEmpresa = view.findViewById(R.id.cardEmpresa);
         btnContinuar = view.findViewById(R.id.btnContinuar);
 
         cardEstudiante.setOnClickListener(v -> {
@@ -39,8 +39,8 @@ public class rol extends Fragment {
             marcarSeleccion();
         });
 
-        cardDocente.setOnClickListener(v -> {
-            seleccion = "docente";
+        cardEmpresa.setOnClickListener(v -> {
+            seleccion = "empresa";
             marcarSeleccion();
         });
 
@@ -67,9 +67,9 @@ public class rol extends Fragment {
     private void marcarSeleccion() {
         if (seleccion.equals("estudiante")) {
             cardEstudiante.setCardBackgroundColor(Color.parseColor("#D9E8F5"));
-            cardDocente.setCardBackgroundColor(Color.parseColor("#E8E2EA"));
+            cardEmpresa.setCardBackgroundColor(Color.parseColor("#E8E2EA"));
         } else {
-            cardDocente.setCardBackgroundColor(Color.parseColor("#D9E8F5"));
+            cardEmpresa.setCardBackgroundColor(Color.parseColor("#D9E8F5"));
             cardEstudiante.setCardBackgroundColor(Color.parseColor("#E8E2EA"));
         }
     }

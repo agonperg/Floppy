@@ -40,7 +40,7 @@ public class fragment_temas extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1. Botón Atrás
+        // Botón atrás
         ImageView btnBack = view.findViewById(R.id.btn_back_temas);
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> {
@@ -50,26 +50,29 @@ public class fragment_temas extends Fragment {
             });
         }
 
-        // 2. Referencia al GridLayout
+        // Grid
         gridTemas = view.findViewById(R.id.grid_temas);
 
-        // 3. Obtener el cuatrimestre seleccionado
+        // Recoger cuatrimestre
         if (getArguments() != null) {
             cuatrimestreSeleccionado = getArguments().getString("cuatrimestre_seleccionado", "1");
         }
+    }
 
-        // 4. Buscar en Firebase
+    @Override
+    public void onResume() {
+        super.onResume();
         cargarApuntesDesdeFirestore();
     }
 
     private void cargarApuntesDesdeFirestore() {
         db = FirebaseFirestore.getInstance();
 
-        // Limpiamos la cuadrícula por si acaso
+        // Limpiar grid para evitar duplicados
         gridTemas.removeAllViews();
 
-        db.collection("Apuntes")
-                .whereEqualTo("cuatrimestre", cuatrimestreSeleccionado)
+        db.collection("usuarios_archivos")
+                // .whereEqualTo("cuatrimestre", cuatrimestreSeleccionado)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -77,8 +80,9 @@ public class fragment_temas extends Fragment {
                             String nombre = document.getString("nombre");
                             String url = document.getString("url");
 
-                            // Dibuja el icono del PDF y lo mete en la cuadrícula
-                            agregarArchivoAGrid(nombre, url);
+                            if (url != null && !url.isEmpty()) {
+                                agregarArchivoAGrid(nombre, url);
+                            }
                         }
                     } else {
                         Toast.makeText(getContext(), "Error al cargar los documentos", Toast.LENGTH_SHORT).show();
@@ -88,34 +92,37 @@ public class fragment_temas extends Fragment {
     }
 
     private void agregarArchivoAGrid(String nombre, String url) {
-        // Inflamos nuestro diseño individual (item_pdf)
-        View itemPdf = LayoutInflater.from(getContext()).inflate(R.layout.item_pdf, gridTemas, false);
+        View itemPdf = LayoutInflater.from(getContext())
+                .inflate(R.layout.item_pdf, gridTemas, false);
 
-        // Le ponemos el nombre que viene de Firebase
         TextView tvNombre = itemPdf.findViewById(R.id.tv_nombre_archivo);
+
         if (nombre != null) {
             tvNombre.setText(nombre);
+        } else {
+            tvNombre.setText("Documento sin título");
         }
 
-        // Le damos acción al hacer clic
         itemPdf.setOnClickListener(v -> descargarDocumento(url));
 
-        // Para que se distribuya uniformemente en el GridLayout (como tenías layout_columnWeight)
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f); // Peso 1
-        itemPdf.setLayoutParams(params);
-
-        // Lo añadimos al GridLayout en la pantalla
         gridTemas.addView(itemPdf);
     }
 
     private void descargarDocumento(String url) {
         if (url != null && !url.isEmpty()) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url));
-            startActivity(intent);
+            try {
+                Toast.makeText(getContext(), "Abriendo PDF...", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url)); // Abrirá el PDF en el navegador
+                startActivity(intent);
+
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "No se pudo abrir el archivo", Toast.LENGTH_SHORT).show();
+                Log.e("PDF_ERROR", "Error al abrir PDF", e);
+            }
         } else {
-            Toast.makeText(getContext(), "El documento no tiene una URL válida", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "URL no válida", Toast.LENGTH_SHORT).show();
         }
     }
 }

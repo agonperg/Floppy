@@ -12,14 +12,14 @@ import androidx.fragment.app.Fragment;
 public class fragment_parati extends Fragment {
 
     public fragment_parati() {
-        // Constructor vacío requerido
+        // Constructor vacío requerido por Android
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // Inflamos el layout fragment_parati.xml
+        // Inflamos el diseño visual (XML) de esta pantalla
         return inflater.inflate(R.layout.fragment_parati, container, false);
     }
 
@@ -27,25 +27,31 @@ public class fragment_parati extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Configuración del botón atrás
+        // --- 1. CONFIGURACIÓN DEL BOTÓN ATRÁS (AHORA LLEVA A LOS APUNTES) ---
         ImageView btnBack = view.findViewById(R.id.btn_back);
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> {
-                if (getActivity() != null) {
-                    getActivity().getOnBackPressedDispatcher().onBackPressed();
+                if (getParentFragmentManager() != null) {
+                    // Magia aquí: En lugar de retroceder, abrimos fragment_temas directamente
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new fragment_temas())
+                            .addToBackStack(null) // Para que el botón físico del móvil no cierre la app de golpe
+                            .commit();
                 }
             });
         }
 
-        // Configuración del botón publicar
+        // --- 2. CONFIGURACIÓN DEL BOTÓN PUBLICAR ---
         View btnPublicar = view.findViewById(R.id.btn_publicar);
         if (btnPublicar != null) {
             btnPublicar.setOnClickListener(v -> {
-                // Aquí hacemos la magia: Navegar a la pantalla de subir
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new fragment_subir()) // Asegúrate de que fragment_container es tu ID real
-                        .addToBackStack(null) // Esto permite volver atrás con el botón del móvil
-                        .commit();
+                if (getParentFragmentManager() != null) {
+                    // Hacemos el cambio de pantalla a fragment_subir
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new fragment_subir())
+                            .addToBackStack(null)
+                            .commit();
+                }
             });
         }
     }

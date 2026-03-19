@@ -22,6 +22,8 @@ import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +44,7 @@ public class fragment_subir extends Fragment {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         archivoUri = result.getData().getData();
-                        Toast.makeText(getContext(), "Archivo PDF seleccionado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Archivo seleccionado", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -65,7 +67,7 @@ public class fragment_subir extends Fragment {
         TextView btnSubir = view.findViewById(R.id.btn_subir_docs);
         btnSubir.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("application/pdf");
+            intent.setType("*/*");
             filePickerLauncher.launch(intent);
         });
 
@@ -90,7 +92,7 @@ public class fragment_subir extends Fragment {
 
         MediaManager.get().upload(uri)
                 .option("resource_type", "auto") // vital para PDFs
-                .unsigned("floppy_preset")       // <-- CAMBIA ESTO por el nombre exacto de tu preset
+                .unsigned("preset_floppy")       // <-- CAMBIA ESTO por el nombre exacto de tu preset
                 .callback(new UploadCallback() {
                     @Override
                     public void onStart(String requestId) {
@@ -129,21 +131,33 @@ public class fragment_subir extends Fragment {
 
     private void guardarEnFirestore(String nombre, String asignatura, String cuatri, String url) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
         Map<String, Object> apunte = new HashMap<>();
         apunte.put("nombre", nombre);
         apunte.put("asignatura", asignatura);
         apunte.put("cuatrimestre", cuatri);
         apunte.put("url", url);
+        apunte.put("timestamp", FieldValue.serverTimestamp());
 
-        db.collection("Apuntes").add(apunte).addOnSuccessListener(documentReference -> {
+        if (auth.getCurrentUser() != null) {
+            apunte.put("userId", auth.getCurrentUser().getUid());
+        }
+
+        db.collection("usuarios_archivos").add(apunte).addOnSuccessListener(documentReference -> {
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
-                    Toast.makeText(getContext(), "¡Apunte guardado y publicado!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "¡Archivo guardado y publicado!", Toast.LENGTH_SHORT).show();
                     getParentFragmentManager().popBackStack(); // Volver a la pantalla anterior
                 });
             }
         }).addOnFailureListener(e -> {
             Log.e("Firestore", "Error guardando en BD: " + e.getMessage());
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getContext(), "Error al guardar en base de datos", Toast.LENGTH_SHORT).show();
+                });
+            }
         });
     }
 }

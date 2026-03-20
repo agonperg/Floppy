@@ -25,58 +25,13 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <GridLayout
+            android:id="@+id/grid_temas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="3"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false"
             android:useDefaultMargins="true">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="90dp"
-                    android:src="@drawable/archivo"
-                    app:tint="#0C3E69" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/tema_x"
-                    android:textColor="#0C3E69"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="12dp">
-                <ImageView android:layout_width="70dp" android:layout_height="90dp" android:src="@drawable/archivo" app:tint="#0C3E69" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/tema_x" android:textColor="#0C3E69" android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="12dp">
-                <ImageView android:layout_width="70dp" android:layout_height="90dp" android:src="@drawable/archivo" app:tint="#0C3E69" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/tema_x" android:textColor="#0C3E69" android:textStyle="bold" />
-            </LinearLayout>
 
         </GridLayout>
     </ScrollView>

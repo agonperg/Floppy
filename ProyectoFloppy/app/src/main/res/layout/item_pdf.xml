@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        android:src="@drawable/archivo"
+        app:tint="#0C3E69" />
+
+    <TextView
+        android:id="@+id/tv_nombre_archivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tema X"
+        android:textColor="#0C3E69"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textAlignment="center"/>
+</LinearLayout>

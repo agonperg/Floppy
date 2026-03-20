@@ -35,26 +35,27 @@ android {
 }
 
 dependencies {
-    // 2. IMPORTA EL BOM DE FIREBASE (Gestiona las versiones por ti)
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    // 1. IMPORTA EL BOM DE FIREBASE (Usa solo la versión más reciente)
+    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
 
-    // 3. AÑADE LAS LIBRERÍAS ESPECÍFICAS DE FIREBASE
+    // 2. LIBRERÍAS DE FIREBASE (El BoM ya sabe qué versión darles)
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-database") // Para Realtime Database
-    implementation("com.google.firebase:firebase-auth")     // Para Autenticación (si la usas)
-    implementation("com.google.firebase:firebase-storage")  // Para subir archivos/fotos (PDFs)
+    implementation("com.google.firebase:firebase-auth")      // Autenticación
+    implementation("com.google.firebase:firebase-storage")   // Para guardar los PDFs
+    implementation("com.google.firebase:firebase-firestore") // Base de datos para los textos y enlaces
 
-    // Tus dependencias actuales
+    // 3. DEPENDENCIAS DE ANDROID Y UI
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
+
+    // 4. PREFERENCIAS DE DATOS
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("androidx.datastore:datastore-core:1.1.1")
+    implementation("com.cloudinary:cloudinary-android:2.3.1")
+
+    // 5. TESTING
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
-
 }

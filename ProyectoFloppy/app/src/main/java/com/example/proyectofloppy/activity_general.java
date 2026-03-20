@@ -67,7 +67,8 @@ public class activity_general extends AppCompatActivity {
             }
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragmentoAMostrar)
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragment_container, new Fragment_buscarviaje())
                     .commit();
         }
     }

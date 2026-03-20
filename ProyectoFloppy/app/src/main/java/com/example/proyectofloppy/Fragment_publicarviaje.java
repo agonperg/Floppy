@@ -1,48 +1,58 @@
 package com.example.proyectofloppy;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class Fragment_publicarviaje extends Fragment {
 
+    private int plazas = 1;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
-    public Fragment_publicarviaje() {
-    }
-
-
-    public static Fragment_publicarviaje newInstance(String param1, String param2) {
-        Fragment_publicarviaje fragment = new Fragment_publicarviaje();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    public Fragment_publicarviaje() {}
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_publicarviaje, container, false);
+
+        // Referencias - Revisa que estos IDs existan en fragment_publicarviaje.xml
+        TextView tvPlazasNum = view.findViewById(R.id.tvPlazasNum);
+        Button btnMas = view.findViewById(R.id.btnMas);
+        Button btnMenos = view.findViewById(R.id.btnMenos);
+        Button btnPublicar = view.findViewById(R.id.btnPublicar);
+        View btnBack = view.findViewById(R.id.btnBack);
+
+        if (btnMas != null) {
+            btnMas.setOnClickListener(v -> {
+                plazas++;
+                tvPlazasNum.setText(String.valueOf(plazas));
+            });
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_publicarviaje, container, false);
+        if (btnMenos != null) {
+            btnMenos.setOnClickListener(v -> {
+                if (plazas > 1) {
+                    plazas--;
+                    tvPlazasNum.setText(String.valueOf(plazas));
+                }
+            });
+        }
+
+        if (btnPublicar != null) {
+            btnPublicar.setOnClickListener(v -> {
+                Toast.makeText(getContext(), "Viaje publicado con éxito", Toast.LENGTH_SHORT).show();
+                getParentFragmentManager().popBackStack();
+            });
+        }
+
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
+        }
+
+        return view;
     }
 }

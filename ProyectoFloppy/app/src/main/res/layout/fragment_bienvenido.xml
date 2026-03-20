@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:padding="24dp">
 
+        <ImageView
+            android:id="@+id/imageUserInfo"
+            android:layout_width="99dp"
+            android:layout_height="99dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/fotoperfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
@@ -21,9 +31,9 @@
             android:textColor="#1A4B84"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3"
+            app:layout_constraintBottom_toBottomOf="@+id/imageUserInfo"
+            app:layout_constraintStart_toEndOf="@+id/imageUserInfo"
+            app:layout_constraintTop_toTopOf="@+id/imageUserInfo"
             app:layout_constraintVertical_bias="0.493" />
 
         <TextView
@@ -38,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/imageUserInfo" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card1"
@@ -80,16 +90,6 @@
                 android:src="@android:drawable/ic_menu_gallery"
                 android:alpha="0.3" />
         </androidx.cardview.widget.CardView>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="99dp"
-            android:layout_height="99dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/fotoperfil"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

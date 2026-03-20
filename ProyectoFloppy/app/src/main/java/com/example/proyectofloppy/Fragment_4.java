@@ -8,11 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_4#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Fragment_4 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

@@ -73,6 +73,11 @@ public class intereses extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Ocultar barra de navegación en registro
+        if (getActivity() instanceof activity_general) {
+            ((activity_general) getActivity()).setBottomNavigationVisibility(View.GONE);
+        }
+
         btnVolver = view.findViewById(R.id.btnVolver);
 
         configurarTarjeta(view.findViewById(R.id.cardDeportes), "Deportes");

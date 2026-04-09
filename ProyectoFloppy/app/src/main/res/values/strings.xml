@@ -30,6 +30,8 @@
     <string name="crear_tu_cuenta">Crea tu cuenta</string>
     <string name="inicio_sesion">Iniciar sesión</string>
     <string name="boton_iniciar_sesion">¿Ya tienes cuenta? Iniciar sesión</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="password">Contraseña</string>
 
     <string name="hint_academia_ej">Ej. Academia Jesús</string>
     <string name="hint_contrasena">Contraseña</string>

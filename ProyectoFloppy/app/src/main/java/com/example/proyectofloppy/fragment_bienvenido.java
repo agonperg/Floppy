@@ -25,6 +25,11 @@ public class fragment_bienvenido extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Mostrar barra de navegación al entrar en la app
+        if (getActivity() instanceof activity_general) {
+            ((activity_general) getActivity()).setBottomNavigationVisibility(View.VISIBLE);
+        }
+
         ImageView fotoPerfil = view.findViewById(R.id.imageUserInfo);
 
         if (fotoPerfil != null) {

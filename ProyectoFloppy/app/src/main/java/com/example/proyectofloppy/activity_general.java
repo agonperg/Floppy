@@ -59,22 +59,6 @@ public class activity_general extends AppCompatActivity {
             
         }
 
-        if (savedInstanceState == null) {
-            String origen = getIntent().getStringExtra("origen");
-            Fragment fragmentoAMostrar;
-
-            if ("desde_login".equals(origen)) {
-                fragmentoAMostrar = new fragment_bienvenido();
-            } else {
-                fragmentoAMostrar = new rol();
-            }
-
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.fragment_container, fragmentoAMostrar)
-                    .commit();
-        }
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -103,6 +87,30 @@ public class activity_general extends AppCompatActivity {
                 return false;
             }
         });
+
+        if (savedInstanceState == null) {
+            String origen = getIntent().getStringExtra("origen");
+            Fragment fragmentoAMostrar;
+
+            if ("desde_login".equals(origen)) {
+                fragmentoAMostrar = new fragment_bienvenido();
+                setBottomNavigationVisibility(android.view.View.VISIBLE);
+            } else {
+                fragmentoAMostrar = new rol();
+                setBottomNavigationVisibility(android.view.View.GONE);
+            }
+
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragment_container, fragmentoAMostrar)
+                    .commit();
+        }
+    }
+
+    public void setBottomNavigationVisibility(int visibility) {
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setVisibility(visibility);
+        }
     }
 
     // Llama a esta función cuando quieras abrir la galería o selector de archivos

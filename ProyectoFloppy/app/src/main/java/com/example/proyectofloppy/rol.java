@@ -30,6 +30,11 @@ public class rol extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Ocultar barra de navegación en registro
+        if (getActivity() instanceof activity_general) {
+            ((activity_general) getActivity()).setBottomNavigationVisibility(View.GONE);
+        }
+
         cardEstudiante = view.findViewById(R.id.cardEstudiante);
         cardEmpresa = view.findViewById(R.id.cardEmpresa);
         btnContinuar = view.findViewById(R.id.btnContinuar);

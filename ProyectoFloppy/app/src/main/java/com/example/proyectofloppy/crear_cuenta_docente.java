@@ -50,6 +50,11 @@ public class crear_cuenta_docente extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Ocultar barra de navegación en registro
+        if (getActivity() instanceof activity_general) {
+            ((activity_general) getActivity()).setBottomNavigationVisibility(View.GONE);
+        }
+
         etAcademyName = view.findViewById(R.id.etAcademyName);
         etEmail = view.findViewById(R.id.etEmail);
         etPassword = view.findViewById(R.id.etPassword);

@@ -13,7 +13,11 @@
         android:icon="@android:drawable/ic_menu_directions"
         android:title="Transporte" />
     <item
-        android:id="@+id/nav_floppy"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="FloppyReal" />
+        android:id="@+id/nav_academias"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Academias" />
+    <item
+        android:id="@+id/nav_apuntes"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Apuntes" />
 </menu>

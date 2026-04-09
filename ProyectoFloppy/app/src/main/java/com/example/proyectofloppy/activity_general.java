@@ -2,7 +2,11 @@ package com.example.proyectofloppy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 import android.os.Bundle;
+import android.view.MenuItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.cloudinary.android.MediaManager;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +26,7 @@ public class activity_general extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private ActivityResultLauncher<String> filePickerLauncher;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,7 @@ public class activity_general extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
-
             String origen = getIntent().getStringExtra("origen");
-
             Fragment fragmentoAMostrar;
 
             if ("desde_login".equals(origen)) {
@@ -68,9 +71,38 @@ public class activity_general extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.fragment_container, new Fragment_buscarviaje())
+                    .replace(R.id.fragment_container, fragmentoAMostrar)
                     .commit();
         }
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                int id = item.getItemId();
+
+                if (id == R.id.nav_tablon) {
+                    selectedFragment = new fragment_bienvenido();
+                } else if (id == R.id.nav_comunidades) {
+                    selectedFragment = new fragment_comunidades();
+                } else if (id == R.id.nav_transporte) {
+                    selectedFragment = new Fragment_buscarviaje();
+                } else if (id == R.id.nav_academias) {
+                    selectedFragment = new fragment_academias();
+                } else if (id == R.id.nav_apuntes) {
+                    selectedFragment = new fragment_parati();
+                }
+
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     // Llama a esta función cuando quieras abrir la galería o selector de archivos

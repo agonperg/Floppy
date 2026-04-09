@@ -25,7 +25,7 @@ public class fragment_academias extends Fragment {
     private RecyclerView rvAcademias;
     private AcademiaAdapter adapter;
     private List<Academia> academiaList;
-    private FloatingActionButton fabAdd;
+    private com.google.android.material.floatingactionbutton.FloatingActionButton fabAdd;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 

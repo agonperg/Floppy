@@ -54,6 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/item_fisica"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/fondo_gris_redondeado"
@@ -68,6 +69,7 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
+            android:id="@+id/item_programacion"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/fondo_gris_redondeado"
@@ -82,6 +84,7 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
+            android:id="@+id/item_algebra"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/fondo_gris_redondeado"
@@ -96,6 +99,7 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
+            android:id="@+id/item_estadistica"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/fondo_gris_redondeado"
@@ -110,6 +114,7 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
+            android:id="@+id/item_poo"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/fondo_gris_redondeado"

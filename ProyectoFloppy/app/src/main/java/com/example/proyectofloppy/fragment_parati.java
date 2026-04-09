@@ -27,32 +27,41 @@ public class fragment_parati extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // --- 1. CONFIGURACIÓN DEL BOTÓN ATRÁS (AHORA LLEVA A LOS APUNTES) ---
+        // --- 1. CONFIGURACIÓN DEL BOTÓN ATRÁS (AHORA SÍ VUELVE ATRÁS) ---
         ImageView btnBack = view.findViewById(R.id.btn_back);
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> {
-                if (getParentFragmentManager() != null) {
-                    // Magia aquí: En lugar de retroceder, abrimos fragment_temas directamente
-                    getParentFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, new fragment_temas())
-                            .addToBackStack(null) // Para que el botón físico del móvil no cierre la app de golpe
-                            .commit();
+                if (getActivity() != null) {
+                    getActivity().getOnBackPressedDispatcher().onBackPressed();
                 }
             });
         }
 
-        // --- 2. CONFIGURACIÓN DEL BOTÓN PUBLICAR ---
+        // --- 2. CONFIGURACIÓN DE LAS CARPETAS DE ASIGNATURAS ---
+        int[] itemIds = {R.id.item_fisica, R.id.item_programacion, R.id.item_algebra, R.id.item_estadistica, R.id.item_poo};
+        for (int id : itemIds) {
+            View itemView = view.findViewById(id);
+            if (itemView != null) {
+                itemView.setOnClickListener(v -> abrirTemas());
+            }
+        }
+
+        // --- 3. CONFIGURACIÓN DEL BOTÓN PUBLICAR ---
         View btnPublicar = view.findViewById(R.id.btn_publicar);
         if (btnPublicar != null) {
             btnPublicar.setOnClickListener(v -> {
-                if (getParentFragmentManager() != null) {
-                    // Hacemos el cambio de pantalla a fragment_subir
-                    getParentFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, new fragment_subir())
-                            .addToBackStack(null)
-                            .commit();
-                }
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new fragment_subir())
+                        .addToBackStack(null)
+                        .commit();
             });
         }
+    }
+
+    private void abrirTemas() {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new fragment_temas())
+                .addToBackStack(null)
+                .commit();
     }
 }

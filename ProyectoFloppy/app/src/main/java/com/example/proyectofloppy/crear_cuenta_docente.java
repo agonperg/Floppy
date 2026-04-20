@@ -72,6 +72,8 @@ public class crear_cuenta_docente extends Fragment {
         tvLoginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                android.content.Intent intent = new android.content.Intent(requireActivity(), activity_login.class);
+                startActivity(intent);
                 requireActivity().finish();
             }
         });

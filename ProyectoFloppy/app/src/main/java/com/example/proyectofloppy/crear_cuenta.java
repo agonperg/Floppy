@@ -79,9 +79,9 @@ public class crear_cuenta extends Fragment {
         btnVolverLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (getActivity() != null) {
-                    getActivity().finish();
-                }
+                android.content.Intent intent = new android.content.Intent(requireActivity(), activity_login.class);
+                startActivity(intent);
+                requireActivity().finish();
             }
         });
     }

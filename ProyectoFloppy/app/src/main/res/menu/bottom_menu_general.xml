@@ -15,5 +15,5 @@
     <item
         android:id="@+id/nav_floppy"
         android:icon="@android:drawable/ic_menu_view"
-        android:title="FloppyReal" />
+        android:title="Academias" />
 </menu>

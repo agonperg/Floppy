@@ -32,5 +32,22 @@ public class fragment_academias extends Fragment {
                 getActivity().getOnBackPressedDispatcher().onBackPressed();
             }
         });
+
+        View cardAcademia1 = view.findViewById(R.id.card_academia_1);
+        if (cardAcademia1 != null) {
+            cardAcademia1.setOnClickListener(v -> navegarADetalle());
+        }
+
+        View cardAcademia2 = view.findViewById(R.id.card_academia_2);
+        if (cardAcademia2 != null) {
+            cardAcademia2.setOnClickListener(v -> navegarADetalle());
+        }
+    }
+
+    private void navegarADetalle() {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new fragment_detalle_academia())
+                .addToBackStack(null)
+                .commit();
     }
 }

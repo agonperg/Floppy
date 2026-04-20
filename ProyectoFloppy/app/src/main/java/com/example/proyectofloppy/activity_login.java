@@ -55,7 +55,9 @@ public class activity_login extends AppCompatActivity {
         btnOlvidoPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrarDialogoRecuperar();
+                android.content.Intent intent = new android.content.Intent(activity_login.this, activity_general.class);
+                intent.putExtra("origen", "recuperar");
+                startActivity(intent);
             }
         });
     }

@@ -31,8 +31,29 @@ public class fragment_bienvenido extends Fragment {
             fotoPerfil.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Acción para ir al fragment de Ajustes de Cuenta
                     irAAjustes();
+                }
+            });
+        }
+
+        // Acceso directo a Apuntes
+        View card1 = view.findViewById(R.id.card1);
+        if (card1 != null) {
+            card1.setOnClickListener(v -> {
+                if (getActivity() instanceof activity_general) {
+                    ((activity_general) getActivity()).getBottomNav()
+                            .setSelectedItemId(R.id.nav_tablon);
+                }
+            });
+        }
+
+        // Acceso directo a Transporte
+        View card2 = view.findViewById(R.id.card2);
+        if (card2 != null) {
+            card2.setOnClickListener(v -> {
+                if (getActivity() instanceof activity_general) {
+                    ((activity_general) getActivity()).getBottomNav()
+                            .setSelectedItemId(R.id.nav_transporte);
                 }
             });
         }

@@ -157,8 +157,10 @@ public class intereses extends Fragment {
 
         db.collection("users").document(userId).set(usuario)
                 .addOnSuccessListener(unused -> {
-                    Snackbar.make(requireActivity().findViewById(android.R.id.content), "Cuenta creada con éxito", Snackbar.LENGTH_LONG).show();
-                    auth.signOut();
+                    android.content.Intent intent = new android.content.Intent(requireActivity(), activity_general.class);
+                    intent.putExtra("origen", "desde_login");
+                    intent.setFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK | android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                     requireActivity().finish();
                 })
                 .addOnFailureListener(e -> {

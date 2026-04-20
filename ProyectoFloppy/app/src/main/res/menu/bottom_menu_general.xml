@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_tablon"
-        android:icon="@android:drawable/ic_menu_today"
-        android:title="Tablón" />
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Apuntes" />
     <item
         android:id="@+id/nav_comunidades"
         android:icon="@android:drawable/ic_menu_myplaces"

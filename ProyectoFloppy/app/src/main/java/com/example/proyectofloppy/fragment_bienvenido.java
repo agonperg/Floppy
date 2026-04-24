@@ -1,49 +1,68 @@
 package com.example.proyectofloppy;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class fragment_bienvenido extends Fragment {
 
-    public fragment_bienvenido() {
+    private TextView tvNombreUsuario;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_bienvenido, container, false);
+
+        tvNombreUsuario = view.findViewById(R.id.tvUserName);
+
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        obtenerDatosUsuario();
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bienvenido, container, false);
-    }
+    private void obtenerDatosUsuario() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
 
-        ImageView fotoPerfil = view.findViewById(R.id.imageUserInfo);
+            db.collection("users").document(userId)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String nombre = documentSnapshot.getString("nombre");
 
-        if (fotoPerfil != null) {
-            fotoPerfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Acción para ir al fragment de Ajustes de Cuenta
-                    irAAjustes();
-                }
-            });
+                            if (nombre != null && !nombre.isEmpty()) {
+                                tvNombreUsuario.setText(nombre);
+                            }
+                        } else {
+                            Log.d("Firestore", "El documento del usuario no existe");
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(getContext(), "Error al cargar el nombre: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("FirestoreError", "Error al obtener documento", e);
+                    });
+        } else {
+            tvNombreUsuario.setText("Invitado");
         }
-    }
-
-    private void irAAjustes() {
-        fragment_ajustesCuenta fragmentAjustes = new fragment_ajustesCuenta();
-
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragmentAjustes);
-        transaction.addToBackStack(null); // Esto permite volver atrás con el botón del móvil
-        transaction.commit();
     }
 }

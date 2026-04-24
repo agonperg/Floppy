@@ -46,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_mylocation" app:tint="#004A77" />
-            <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="10dp" android:background="@android:color/transparent" android:hint="Origen" android:textSize="16sp" />
+            <AutoCompleteTextView android:id="@+id/etOrigenPublicar" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="10dp" android:background="@android:color/transparent" android:hint="Origen" android:textSize="16sp" android:completionThreshold="1" android:dropDownHeight="200dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +62,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boxOrigin">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_mylocation" app:tint="#004A77" />
-            <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="10dp" android:background="@android:color/transparent" android:hint="Destino" android:textSize="16sp" />
+            <EditText android:id="@+id/etDestinoPublicar" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="10dp" android:background="@android:color/transparent" android:hint="Destino" android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,7 +78,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boxDest">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_today" app:tint="#004A77" />
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:text="Fecha" android:textColor="#8E8E93" android:textSize="16sp" />
+            <TextView android:id="@+id/tvFechaSelec" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:text="Fecha" android:textColor="#8E8E93" android:textSize="16sp" />
             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_menu_recent_history" app:tint="#004A77" />
         </LinearLayout>
 
@@ -95,7 +95,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boxDate">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_month" app:tint="#004A77" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:text="Hora" android:textColor="#8E8E93" android:textSize="16sp" />
+            <TextView android:id="@+id/tvHoraSelec" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:text="Hora" android:textColor="#8E8E93" android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,7 +111,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boxTime">
             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_save" app:tint="#004A77" />
-            <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="10dp" android:background="@android:color/transparent" android:hint="Precio" android:inputType="numberDecimal" android:textSize="16sp" />
+            <EditText android:id="@+id/etPrecioPublicar" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="10dp" android:background="@android:color/transparent" android:hint="Precio" android:inputType="numberDecimal" android:textSize="16sp" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView

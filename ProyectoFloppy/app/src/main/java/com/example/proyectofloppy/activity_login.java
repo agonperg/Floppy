@@ -30,7 +30,6 @@ public class activity_login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-        auth.signOut();
         etCorreo = findViewById(R.id.correo);
         etPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.button3);

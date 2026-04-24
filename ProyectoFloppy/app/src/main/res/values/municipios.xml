@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="municipios_espana">
+        <!-- Andalucía -->
+        <item>Almería</item>
+        <item>Níjar</item>
+        <item>El Ejido</item>
+        <item>Roquetas de Mar</item>
+        <item>Adra</item>
+        <item>Berja</item>
+        <item>Huércal-Overa</item>
+        <item>Vélez-Blanco</item>
+        <item>Cádiz</item>
+        <item>Jerez de la Frontera</item>
+        <item>Algeciras</item>
+        <item>San Fernando</item>
+        <item>El Puerto de Santa María</item>
+        <item>Chiclana de la Frontera</item>
+        <item>Sanlúcar de Barrameda</item>
+        <item>La Línea de la Concepción</item>
+        <item>Rota</item>
+        <item>Tarifa</item>
+        <item>Vejer de la Frontera</item>
+        <item>Córdoba</item>
+        <item>Lucena</item>
+        <item>Montilla</item>
+        <item>Puente Genil</item>
+        <item>Priego de Córdoba</item>
+        <item>Pozoblanco</item>
+        <item>Baena</item>
+        <item>Cabra</item>
+        <item>Aguilar de la Frontera</item>
+        <item>Palma del Río</item>
+        <item>Granada</item>
+        <item>Motril</item>
+        <item>Almuñécar</item>
+        <item>Guadix</item>
+        <item>Baza</item>
+        <item>Armilla</item>
+        <item>Maracena</item>
+        <item>Loja</item>
+        <item>Salobreña</item>
+        <item>Huelva</item>
+        <item>Lepe</item>
+        <item>Isla Cristina</item>
+        <item>Moguer</item>
+        <item>Ayamonte</item>
+        <item>Almonte</item>
+        <item>Jaén</item>
+        <item>Linares</item>
+        <item>Andújar</item>
+        <item>Úbeda</item>
+        <item>Baeza</item>
+        <item>Alcalá la Real</item>
+        <item>Arjona</item>
+        <item>Martos</item>
+        <item>Mancha Real</item>
+        <item>Bailén</item>
+        <item>Guarromán</item>
+        <item>La Carolina</item>
+        <item>Porcuna</item>
+        <item>Mengíbar</item>
+        <item>Torredonjimeno</item>
+        <item>Cazorla</item>
+        <item>Quesada</item>
+        <item>Alcaudete</item>
+        <item>Villanueva del Arzobispo</item>
+        <item>Cabra del Santo Cristo</item>
+        <item>Iznalloz</item>
+        <item>Málaga</item>
+        <item>Marbella</item>
+        <item>Vélez-Málaga</item>
+        <item>Fuengirola</item>
+        <item>Torremolinos</item>
+        <item>Benalmádena</item>
+        <item>Estepona</item>
+        <item>Antequera</item>
+        <item>Ronda</item>
+        <item>Mijas</item>
+        <item>Nerja</item>
+        <item>Alhaurín el Grande</item>
+        <item>Sevilla</item>
+        <item>Dos Hermanas</item>
+        <item>Alcalá de Guadaíra</item>
+        <item>Écija</item>
+        <item>Utrera</item>
+        <item>Camas</item>
+        <item>Carmona</item>
+        <item>Osuna</item>
+        <item>Lebrija</item>
+        <item>Morón de la Frontera</item>
+        <!-- Madrid -->
+        <item>Madrid</item>
+        <item>Móstoles</item>
+        <item>Alcalá de Henares</item>
+        <item>Fuenlabrada</item>
+        <item>Leganés</item>
+        <item>Getafe</item>
+        <item>Alcorcón</item>
+        <item>Torrejón de Ardoz</item>
+        <item>Parla</item>
+        <item>Alcobendas</item>
+        <item>Pozuelo de Alarcón</item>
+        <item>Las Rozas de Madrid</item>
+        <item>Majadahonda</item>
+        <item>Aranjuez</item>
+        <item>Collado Villalba</item>
+        <!-- Castilla-La Mancha -->
+        <item>Albacete</item>
+        <item>Hellín</item>
+        <item>Almansa</item>
+        <item>Villarrobledo</item>
+        <item>Ciudad Real</item>
+        <item>Puertollano</item>
+        <item>Manzanares</item>
+        <item>Valdepeñas</item>
+        <item>Cuenca</item>
+        <item>Tarancón</item>
+        <item>Guadalajara</item>
+        <item>Azuqueca de Henares</item>
+        <item>Toledo</item>
+        <item>Talavera de la Reina</item>
+        <item>Illescas</item>
+        <!-- Comunidad Valenciana -->
+        <item>Valencia</item>
+        <item>Alicante</item>
+        <item>Elche</item>
+        <item>Castellón de la Plana</item>
+        <item>Torrent</item>
+        <item>Orihuela</item>
+        <item>Gandia</item>
+        <item>Sagunto</item>
+        <item>Benidorm</item>
+        <!-- Cataluña -->
+        <item>Barcelona</item>
+        <item>Hospitalet de Llobregat</item>
+        <item>Badalona</item>
+        <item>Terrassa</item>
+        <item>Sabadell</item>
+        <item>Lleida</item>
+        <item>Tarragona</item>
+        <item>Girona</item>
+        <item>Mataró</item>
+        <item>Santa Coloma de Gramenet</item>
+        <!-- País Vasco -->
+        <item>Bilbao</item>
+        <item>Vitoria-Gasteiz</item>
+        <item>San Sebastián</item>
+        <item>Barakaldo</item>
+        <item>Getxo</item>
+        <!-- Galicia -->
+        <item>Vigo</item>
+        <item>A Coruña</item>
+        <item>Ourense</item>
+        <item>Santiago de Compostela</item>
+        <item>Lugo</item>
+        <item>Pontevedra</item>
+        <!-- Aragón -->
+        <item>Zaragoza</item>
+        <item>Huesca</item>
+        <item>Teruel</item>
+        <!-- Castilla y León -->
+        <item>Valladolid</item>
+        <item>Burgos</item>
+        <item>Salamanca</item>
+        <item>León</item>
+        <item>Palencia</item>
+        <item>Segovia</item>
+        <item>Ávila</item>
+        <item>Soria</item>
+        <item>Zamora</item>
+        <!-- Extremadura -->
+        <item>Badajoz</item>
+        <item>Cáceres</item>
+        <item>Mérida</item>
+        <item>Plasencia</item>
+        <!-- Murcia -->
+        <item>Murcia</item>
+        <item>Cartagena</item>
+        <item>Lorca</item>
+        <item>Molina de Segura</item>
+        <!-- Asturias -->
+        <item>Oviedo</item>
+        <item>Gijón</item>
+        <item>Avilés</item>
+        <!-- Cantabria -->
+        <item>Santander</item>
+        <!-- La Rioja -->
+        <item>Logroño</item>
+        <!-- Navarra -->
+        <item>Pamplona</item>
+        <!-- Islas Baleares -->
+        <item>Palma</item>
+        <item>Ibiza</item>
+        <item>Mahón</item>
+        <!-- Islas Canarias -->
+        <item>Las Palmas de Gran Canaria</item>
+        <item>Santa Cruz de Tenerife</item>
+        <item>La Laguna</item>
+        <item>Telde</item>
+    </string-array>
+</resources>

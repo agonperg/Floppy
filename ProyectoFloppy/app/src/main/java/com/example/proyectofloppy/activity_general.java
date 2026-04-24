@@ -2,11 +2,9 @@ package com.example.proyectofloppy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
-import android.view.MenuItem;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+import android.view.View;
 import com.cloudinary.android.MediaManager;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +15,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +25,7 @@ public class activity_general extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private ActivityResultLauncher<String> filePickerLauncher;
-    private BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +34,9 @@ public class activity_general extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        bottomNav = findViewById(R.id.bottom_navigation);
 
-        // 0. Preparar el selector de archivos
+        // Prepare file picker
         filePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 uri -> {
@@ -48,7 +48,7 @@ public class activity_general extends AppCompatActivity {
                 }
         );
 
-        // 1. INICIALIZAR CLOUDINARY
+        // Initialize Cloudinary
         try {
             Map<String, String> config = new HashMap<>();
             config.put("cloud_name", "dm9litchf");
@@ -56,67 +56,74 @@ public class activity_general extends AppCompatActivity {
             config.put("api_secret", "bN71eKU8iT6oN8uhwZQM5x_qFN4");
             MediaManager.init(this, config);
         } catch (Exception e) {
-            
         }
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
-                int id = item.getItemId();
+        // Configure BottomNavigationView tab listener
+        bottomNav.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            Fragment selectedFragment = null;
 
-                if (id == R.id.nav_tablon) {
-                    selectedFragment = new fragment_bienvenido();
-                } else if (id == R.id.nav_comunidades) {
-                    selectedFragment = new fragment_comunidades();
-                } else if (id == R.id.nav_transporte) {
-                    selectedFragment = new Fragment_buscarviaje();
-                } else if (id == R.id.nav_academias) {
-                    selectedFragment = new fragment_academias();
-                } else if (id == R.id.nav_apuntes) {
-                    selectedFragment = new fragment_parati();
-                }
-
-                if (selectedFragment != null) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, selectedFragment)
-                            .commit();
-                    return true;
-                }
-                return false;
+            if (itemId == R.id.nav_tablon) {
+                selectedFragment = new fragment_parati();
+            } else if (itemId == R.id.nav_comunidades) {
+                selectedFragment = new fragment_comunidades();
+            } else if (itemId == R.id.nav_transporte) {
+                selectedFragment = new Fragment_buscarviaje();
+            } else if (itemId == R.id.nav_floppy) {
+                selectedFragment = new fragment_academias();
             }
+
+            if (selectedFragment != null) {
+                // Clear backstack when switching tabs
+                getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+                return true;
+            }
+            return false;
         });
 
         if (savedInstanceState == null) {
             String origen = getIntent().getStringExtra("origen");
-            Fragment fragmentoAMostrar;
 
             if ("desde_login".equals(origen)) {
-                fragmentoAMostrar = new fragment_bienvenido();
-                setBottomNavigationVisibility(android.view.View.VISIBLE);
+                // Main app flow: show home, show BottomNav
+                bottomNav.setVisibility(View.VISIBLE);
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragment_container, new fragment_bienvenido())
+                        .commit();
+            } else if ("recuperar".equals(origen)) {
+                // Password recovery flow: hide BottomNav, show recovery screen
+                bottomNav.setVisibility(View.GONE);
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragment_container, new Fragment_recuperarcontrasenia())
+                        .commit();
             } else {
-                fragmentoAMostrar = new rol();
-                setBottomNavigationVisibility(android.view.View.GONE);
+                // Registration flow: hide BottomNav, show role selection
+                bottomNav.setVisibility(View.GONE);
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragment_container, new rol())
+                        .commit();
             }
-
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.fragment_container, fragmentoAMostrar)
-                    .commit();
         }
     }
 
-    public void setBottomNavigationVisibility(int visibility) {
-        if (bottomNavigationView != null) {
-            bottomNavigationView.setVisibility(visibility);
+    public BottomNavigationView getBottomNav() {
+        return bottomNav;
+    }
+
+    public void showBottomNav() {
+        if (bottomNav != null) {
+            bottomNav.setVisibility(View.VISIBLE);
         }
     }
 
-    // Llama a esta función cuando quieras abrir la galería o selector de archivos
     public void openFileChooser() {
-        // Usa "*/*" para cualquier archivo, o "image/*" para solo imágenes
-        filePickerLauncher.launch("*/*"); 
+        filePickerLauncher.launch("*/*");
     }
 
     private void subirArchivoACloudinary(Uri fileUri) {
@@ -131,7 +138,6 @@ public class activity_general extends AppCompatActivity {
 
                     @Override
                     public void onProgress(String requestId, long bytes, long totalBytes) {
-                        // Opcional: Actualizar un ProgressBar si lo tuvieras en la UI
                         double progress = (double) bytes / totalBytes;
                         Log.d("Cloudinary", "Subiendo: " + (progress * 100) + "%");
                     }
@@ -140,8 +146,6 @@ public class activity_general extends AppCompatActivity {
                     public void onSuccess(String requestId, Map resultData) {
                         String secureUrl = (String) resultData.get("secure_url");
                         Toast.makeText(activity_general.this, "Subida a Cloudinary exitosa!", Toast.LENGTH_SHORT).show();
-                        
-                        // Una vez subido exitosamente, guardamos en Firestore
                         guardarEnFirestore(secureUrl);
                     }
 
@@ -158,17 +162,14 @@ public class activity_general extends AppCompatActivity {
     }
 
     private void guardarEnFirestore(String secureUrl) {
-        // Obtener el ID del usuario si está autenticado
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String userId = (currentUser != null) ? currentUser.getUid() : "usuario_anonimo";
 
-        // Crear mapa con los datos
         Map<String, Object> archivoInfo = new HashMap<>();
         archivoInfo.put("secure_url", secureUrl);
         archivoInfo.put("usuario_id", userId);
         archivoInfo.put("timestamp", com.google.firebase.firestore.FieldValue.serverTimestamp());
 
-        // Guardar en la colección "usuarios_archivos"
         db.collection("usuarios_archivos")
                 .add(archivoInfo)
                 .addOnSuccessListener(documentReference -> {

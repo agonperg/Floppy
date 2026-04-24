@@ -62,41 +62,21 @@ public class fragment_academias extends Fragment {
                     .commit();
         });
 
-        comprobarRolYCargarDatos();
+        View cardAcademia1 = view.findViewById(R.id.card_academia_1);
+        if (cardAcademia1 != null) {
+            cardAcademia1.setOnClickListener(v -> navegarADetalle());
+        }
+
+        View cardAcademia2 = view.findViewById(R.id.card_academia_2);
+        if (cardAcademia2 != null) {
+            cardAcademia2.setOnClickListener(v -> navegarADetalle());
+        }
     }
 
-    private void comprobarRolYCargarDatos() {
-        if (mAuth.getCurrentUser() != null) {
-            String userId = mAuth.getCurrentUser().getUid();
-
-            // 1. Comprobar ROL
-            db.collection("users").document(userId).get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            String rol = documentSnapshot.getString("rol");
-                            if ("docente".equals(rol)) {
-                                fabAdd.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
-
-            // 2. Cargar ACADEMIAS
-            db.collection("academias").orderBy("timestamp", Query.Direction.DESCENDING)
-                    .addSnapshotListener((value, error) -> {
-                        if (error != null) {
-                            Log.e("Firestore", "Error al cargar academias", error);
-                            return;
-                        }
-
-                        if (value != null) {
-                            academiaList.clear();
-                            for (QueryDocumentSnapshot doc : value) {
-                                Academia academia = doc.toObject(Academia.class);
-                                academiaList.add(academia);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-        }
+    private void navegarADetalle() {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new fragment_detalle_academia())
+                .addToBackStack(null)
+                .commit();
     }
 }

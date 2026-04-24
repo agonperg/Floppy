@@ -30,7 +30,6 @@ public class activity_login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-        auth.signOut();
         etCorreo = findViewById(R.id.correo);
         etPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.button3);
@@ -55,7 +54,9 @@ public class activity_login extends AppCompatActivity {
         btnOlvidoPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrarDialogoRecuperar();
+                android.content.Intent intent = new android.content.Intent(activity_login.this, activity_general.class);
+                intent.putExtra("origen", "recuperar");
+                startActivity(intent);
             }
         });
     }

@@ -9,6 +9,11 @@
     android:padding="32dp"
     tools:context=".activity_login">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="180dp"
@@ -144,3 +149,5 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

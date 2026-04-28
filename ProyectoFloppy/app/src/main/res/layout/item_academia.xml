@@ -31,13 +31,35 @@
 
             <TextView
                 android:id="@+id/tv_item_nombre"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="16dp"
                 android:text="Nombre Academia"
                 android:textColor="#0C3E69"
                 android:textStyle="bold"
                 android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/btn_edit_academia"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_edit"
+                android:padding="4dp"
+                app:tint="#0C3E69"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Editar academia" />
+
+            <ImageView
+                android:id="@+id/btn_delete_academia"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_delete"
+                android:padding="4dp"
+                app:tint="#D32F2F"
+                android:visibility="gone"
+                android:contentDescription="Eliminar academia" />
         </LinearLayout>
 
         <TextView

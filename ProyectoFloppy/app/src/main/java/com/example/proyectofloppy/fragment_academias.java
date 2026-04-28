@@ -19,6 +19,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 
 public class fragment_academias extends Fragment {
 
@@ -53,6 +55,9 @@ public class fragment_academias extends Fragment {
         rvAcademias.setLayoutManager(new LinearLayoutManager(getContext()));
         rvAcademias.setAdapter(adapter);
 
+        // Configurar el listener de eliminación
+        adapter.setOnDeleteClickListener(this::mostrarConfirmacionBorrado);
+
         btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
 
         fabAdd.setOnClickListener(v -> {
@@ -63,6 +68,26 @@ public class fragment_academias extends Fragment {
         });
 
         comprobarRolYCargarDatos();
+    }
+
+    private void mostrarConfirmacionBorrado(Academia academia) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Eliminar Academia")
+                .setMessage("¿Estás seguro de que deseas eliminar la academia \"" + academia.getNombre() + "\"?")
+                .setPositiveButton("Eliminar", (dialog, which) -> eliminarAcademia(academia))
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void eliminarAcademia(Academia academia) {
+        db.collection("academias").document(academia.getId())
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Academia eliminada con éxito", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Error al eliminar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void comprobarRolYCargarDatos() {
@@ -76,6 +101,7 @@ public class fragment_academias extends Fragment {
                             String rol = documentSnapshot.getString("rol");
                             if ("docente".equals(rol)) {
                                 fabAdd.setVisibility(View.VISIBLE);
+                                adapter.setDocente(true);
                             }
                         }
                     });
@@ -99,4 +125,4 @@ public class fragment_academias extends Fragment {
                     });
         }
     }
-}
+}

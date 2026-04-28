@@ -9,11 +9,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.AcademiaViewHolder> {
-
     private List<Academia> academiaList;
+    private boolean isDocente = false;
+    private OnDeleteClickListener deleteClickListener;
+
+    public interface OnDeleteClickListener {
+        void onDeleteClick(Academia academia);
+    }
 
     public AcademiaAdapter(List<Academia> academiaList) {
         this.academiaList = academiaList;
+    }
+
+    public void setDocente(boolean docente) {
+        this.isDocente = docente;
+        notifyDataSetChanged();
+    }
+
+    public void setOnDeleteClickListener(OnDeleteClickListener listener) {
+        this.deleteClickListener = listener;
     }
 
     @NonNull
@@ -29,6 +43,17 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
         holder.tvNombre.setText(academia.getNombre());
         holder.tvDireccion.setText(academia.getDireccion());
         holder.tvDescripcion.setText(academia.getDescripcion());
+
+        if (isDocente) {
+            holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.btnDelete.setOnClickListener(v -> {
+                if (deleteClickListener != null) {
+                    deleteClickListener.onDeleteClick(academia);
+                }
+            });
+        } else {
+            holder.btnDelete.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -38,12 +63,14 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
 
     public static class AcademiaViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombre, tvDireccion, tvDescripcion;
+        android.widget.ImageView btnDelete;
 
         public AcademiaViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNombre = itemView.findViewById(R.id.tv_item_nombre);
             tvDireccion = itemView.findViewById(R.id.tv_item_direccion);
             tvDescripcion = itemView.findViewById(R.id.tv_item_descripcion);
+            btnDelete = itemView.findViewById(R.id.btn_delete_academia);
         }
     }
 }

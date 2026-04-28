@@ -21,6 +21,7 @@ public class fragment_crear_academia extends Fragment {
     private MaterialButton btnGuardar;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private String academiaId = null;
 
     public fragment_crear_academia() {}
 
@@ -43,9 +44,28 @@ public class fragment_crear_academia extends Fragment {
         btnGuardar = view.findViewById(R.id.btn_guardar_academia);
         ImageView btnBack = view.findViewById(R.id.btn_back_crear);
 
-        btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
+        if (getArguments() != null && getArguments().containsKey("academia_id")) {
+            academiaId = getArguments().getString("academia_id");
+            cargarDatosAcademia();
+            btnGuardar.setText("Guardar Cambios");
+        }
 
+        btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
         btnGuardar.setOnClickListener(v -> guardarAcademia());
+    }
+
+    private void cargarDatosAcademia() {
+        db.collection("academias").document(academiaId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        Academia academia = documentSnapshot.toObject(Academia.class);
+                        if (academia != null) {
+                            etNombre.setText(academia.getNombre());
+                            etDireccion.setText(academia.getDireccion());
+                            etDescripcion.setText(academia.getDescripcion());
+                        }
+                    }
+                });
     }
 
     private void guardarAcademia() {
@@ -58,18 +78,19 @@ public class fragment_crear_academia extends Fragment {
             return;
         }
 
-        String id = UUID.randomUUID().toString();
+        String id = (academiaId != null) ? academiaId : UUID.randomUUID().toString();
         String userId = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getUid() : "anonimo";
 
-        Academia nuevaAcademia = new Academia(id, nombre, descripcion, direccion, userId);
+        Academia academia = new Academia(id, nombre, descripcion, direccion, userId);
 
-        db.collection("academias").document(id).set(nuevaAcademia)
+        db.collection("academias").document(id).set(academia)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getContext(), "Academia creada con éxito", Toast.LENGTH_SHORT).show();
+                    String msg = (academiaId != null) ? "Academia actualizada" : "Academia creada";
+                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                     getParentFragmentManager().popBackStack();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Error al guardar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }

@@ -12,9 +12,14 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
     private List<Academia> academiaList;
     private boolean isDocente = false;
     private OnDeleteClickListener deleteClickListener;
+    private OnEditClickListener editClickListener;
 
     public interface OnDeleteClickListener {
         void onDeleteClick(Academia academia);
+    }
+
+    public interface OnEditClickListener {
+        void onEditClick(Academia academia);
     }
 
     public AcademiaAdapter(List<Academia> academiaList) {
@@ -28,6 +33,10 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
 
     public void setOnDeleteClickListener(OnDeleteClickListener listener) {
         this.deleteClickListener = listener;
+    }
+
+    public void setOnEditClickListener(OnEditClickListener listener) {
+        this.editClickListener = listener;
     }
 
     @NonNull
@@ -46,13 +55,22 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
 
         if (isDocente) {
             holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.btnEdit.setVisibility(View.VISIBLE);
+            
             holder.btnDelete.setOnClickListener(v -> {
                 if (deleteClickListener != null) {
                     deleteClickListener.onDeleteClick(academia);
                 }
             });
+
+            holder.btnEdit.setOnClickListener(v -> {
+                if (editClickListener != null) {
+                    editClickListener.onEditClick(academia);
+                }
+            });
         } else {
             holder.btnDelete.setVisibility(View.GONE);
+            holder.btnEdit.setVisibility(View.GONE);
         }
     }
 
@@ -63,7 +81,7 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
 
     public static class AcademiaViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombre, tvDireccion, tvDescripcion;
-        android.widget.ImageView btnDelete;
+        android.widget.ImageView btnDelete, btnEdit;
 
         public AcademiaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +89,7 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
             tvDireccion = itemView.findViewById(R.id.tv_item_direccion);
             tvDescripcion = itemView.findViewById(R.id.tv_item_descripcion);
             btnDelete = itemView.findViewById(R.id.btn_delete_academia);
+            btnEdit = itemView.findViewById(R.id.btn_edit_academia);
         }
     }
 }

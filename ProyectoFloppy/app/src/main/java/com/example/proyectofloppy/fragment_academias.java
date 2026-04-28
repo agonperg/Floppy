@@ -55,8 +55,9 @@ public class fragment_academias extends Fragment {
         rvAcademias.setLayoutManager(new LinearLayoutManager(getContext()));
         rvAcademias.setAdapter(adapter);
 
-        // Configurar el listener de eliminación
+        // Configurar el listener de eliminación y edición
         adapter.setOnDeleteClickListener(this::mostrarConfirmacionBorrado);
+        adapter.setOnEditClickListener(this::abrirEditorAcademia);
 
         btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
 
@@ -77,6 +78,18 @@ public class fragment_academias extends Fragment {
                 .setPositiveButton("Eliminar", (dialog, which) -> eliminarAcademia(academia))
                 .setNegativeButton("Cancelar", null)
                 .show();
+    }
+
+    private void abrirEditorAcademia(Academia academia) {
+        fragment_crear_academia fragment = new fragment_crear_academia();
+        Bundle args = new Bundle();
+        args.putString("academia_id", academia.getId());
+        fragment.setArguments(args);
+
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private void eliminarAcademia(Academia academia) {

@@ -94,9 +94,8 @@ public class fragment_unirse_comunidad extends Fragment {
     }
 
     private void unirseAComunidadEnUsuario(Comunidad comunidad) {
-        // IMPORTANTE: Aquí usamos el ID del usuario.
-        // Como estamos en pruebas, usa el ID que tengas en tu Firebase (ej: "usuario_123")
-        String userId = "admin_test";
+        com.google.firebase.auth.FirebaseAuth mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
+        String userId = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getUid() : "admin_test";
 
         db.collection("users").document(userId)
                 .update("misComunidades", FieldValue.arrayUnion(comunidad.getId()))
@@ -104,9 +103,12 @@ public class fragment_unirse_comunidad extends Fragment {
                     Toast.makeText(getContext(), "Añadida a tu perfil: " + comunidad.getNombre(), Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    // Si el documento no existe, fallará.
-                    // Asegúrate de que en Firebase exista un documento en "users" llamado "admin_test"
-                    Toast.makeText(getContext(), "Error: Debes tener un perfil creado primero", Toast.LENGTH_LONG).show();
+                    // Si no existe, lo creamos
+                    java.util.Map<String, Object> data = new java.util.HashMap<>();
+                    data.put("misComunidades", java.util.Arrays.asList(comunidad.getId()));
+                    db.collection("users").document(userId).set(data).addOnSuccessListener(aVoid -> {
+                        Toast.makeText(getContext(), "Añadida a tu perfil: " + comunidad.getNombre(), Toast.LENGTH_SHORT).show();
+                    });
                 });
     }
 }

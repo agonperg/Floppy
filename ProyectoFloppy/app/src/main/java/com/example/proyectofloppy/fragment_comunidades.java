@@ -59,6 +59,16 @@ public class fragment_comunidades extends Fragment {
         adapter = new ComunidadAdapter(listaComunidades);
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(comunidad -> {
+            fragment_chat chatFragment = new fragment_chat();
+            Bundle bundle = new Bundle();
+            bundle.putString("comunidadId", comunidad.getId());
+            bundle.putString("creadorId", comunidad.getCreadorId());
+            bundle.putString("nombreComunidad", comunidad.getNombre());
+            chatFragment.setArguments(bundle);
+            navegarAFragment(chatFragment);
+        });
+
         // Buscador
         if (etBuscar != null) {
             etBuscar.addTextChangedListener(new TextWatcher() {
@@ -84,54 +94,52 @@ public class fragment_comunidades extends Fragment {
     }
 
     private void cargarComunidadesDelUsuario() {
-        FirebaseUser user = mAuth.getCurrentUser();
+        String userId = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getUid() : "admin_test";
 
-        if (user != null) {
-            String userId = user.getUid();
+        db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                // Sacamos la lista del array "misComunidades"
+                Object misComunidadesObj = documentSnapshot.get("misComunidades");
 
-            db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
-                    // Sacamos la lista del array "misComunidades"
-                    Object misComunidadesObj = documentSnapshot.get("misComunidades");
+                if (misComunidadesObj instanceof List) {
+                    List<String> ids = (List<String>) misComunidadesObj;
 
-                    if (misComunidadesObj instanceof List) {
-                        List<String> ids = (List<String>) misComunidadesObj;
-
-                        if (!ids.isEmpty()) {
-                            // Consultamos los datos de las comunidades cuyos IDs están en el array
-                            db.collection("Comunidades")
-                                    .whereIn(FieldPath.documentId(), ids)
-                                    .get()
-                                    .addOnSuccessListener(querySnapshot -> {
-                                        listaComunidades.clear();
-                                        for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
-                                            Comunidad c = doc.toObject(Comunidad.class);
-                                            if (c != null) {
-                                                c.setId(doc.getId());
-                                                listaComunidades.add(c);
-                                            }
+                    if (!ids.isEmpty()) {
+                        // Consultamos los datos de las comunidades cuyos IDs están en el array
+                        db.collection("Comunidades")
+                                .whereIn(FieldPath.documentId(), ids)
+                                .get()
+                                .addOnSuccessListener(querySnapshot -> {
+                                    listaComunidades.clear();
+                                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                                        Comunidad c = doc.toObject(Comunidad.class);
+                                        if (c != null) {
+                                            c.setId(doc.getId());
+                                            listaComunidades.add(c);
                                         }
-                                        listaOriginal.clear();
-                                        listaOriginal.addAll(listaComunidades);
-                                        adapter.notifyDataSetChanged();
-                                    });
-                        } else {
-                            limpiarLista();
-                        }
+                                    }
+                                    listaOriginal.clear();
+                                    listaOriginal.addAll(listaComunidades);
+                                    adapter.notifyDataSetChanged();
+                                });
                     } else {
                         limpiarLista();
                     }
+                } else {
+                    limpiarLista();
                 }
-            }).addOnFailureListener(e -> {
-                if (isAdded()) {
-                    Toast.makeText(getContext(), "Error al acceder al perfil", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            if (isAdded()) {
-                Toast.makeText(getContext(), "Sesión no iniciada", Toast.LENGTH_SHORT).show();
+            } else {
+                // Si no existe, creamos el usuario de prueba para la demo
+                java.util.Map<String, Object> data = new java.util.HashMap<>();
+                data.put("misComunidades", new ArrayList<String>());
+                db.collection("users").document(userId).set(data);
+                limpiarLista();
             }
-        }
+        }).addOnFailureListener(e -> {
+            if (isAdded()) {
+                Toast.makeText(getContext(), "Error al acceder al perfil", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void filtrarBuscador(String textoBusqueda) {

@@ -52,8 +52,8 @@ public class crear_cuenta_docente extends Fragment {
 
         // Ocultar barra de navegación en registro
         if (getActivity() instanceof activity_general) {
-            ((activity_general) getActivity()).setBottomNavigationVisibility(View.GONE);
-        }
+// En crear_cuenta.java (línea 58 aprox)
+            ((activity_general) getActivity()).getBottomNav().setVisibility(View.GONE);        }
 
         etAcademyName = view.findViewById(R.id.etAcademyName);
         etEmail = view.findViewById(R.id.etEmail);

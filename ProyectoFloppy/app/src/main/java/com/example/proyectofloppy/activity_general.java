@@ -69,7 +69,7 @@ public class activity_general extends AppCompatActivity {
                 selectedFragment = new fragment_comunidades();
             } else if (itemId == R.id.nav_transporte) {
                 selectedFragment = new Fragment_buscarviaje();
-            } else if (itemId == R.id.nav_floppy) {
+            } else if (itemId == R.id.nav_academias) {
                 selectedFragment = new fragment_academias();
             }
 
@@ -178,5 +178,11 @@ public class activity_general extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(activity_general.this, "Error guardando en Firestore: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
+    }
+    // Añade esto dentro de activity_general.java
+    public void setBottomNavigationVisibility(int visibility) {
+        if (bottomNav != null) {
+            bottomNav.setVisibility(visibility);
+        }
     }
 }

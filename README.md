@@ -1,4 +1,4 @@
-# Floppy - Tu compañero universitario
+# Floppy 
 
 Floppy es una aplicación móvil diseñada para facilitar la vida universitaria, permitiendo a los estudiantes gestionar comunidades, compartir apuntes, coordinar transporte y mucho más.
 

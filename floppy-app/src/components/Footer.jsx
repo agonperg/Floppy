@@ -11,7 +11,7 @@ export default function Footer() {
       }}
     >
       <p style={{ marginBottom: '0.5rem', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.1rem' }}>
-        Floppy © 2024 — Tu Red Social Educativa
+        Floppy © 2026 — Tu Red Social Educativa
       </p>
       <p style={{ marginBottom: '0.75rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
         Desarrollado por <strong style={{ color: 'white' }}>Equipo Davante</strong>

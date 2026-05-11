@@ -47,7 +47,7 @@ public class fragment_bienvenido extends Fragment {
             card1.setOnClickListener(v -> {
                 if (getActivity() instanceof activity_general) {
                     ((activity_general) getActivity()).getBottomNav()
-                            .setSelectedItemId(R.id.nav_tablon);
+                            .setSelectedItemId(R.id.nav_apuntes);
                 }
             });
         }

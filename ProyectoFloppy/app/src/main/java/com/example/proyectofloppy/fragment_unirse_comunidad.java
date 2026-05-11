@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,12 +30,14 @@ public class fragment_unirse_comunidad extends Fragment {
     private List<Comunidad> listaTodas;
     private List<Comunidad> listaOriginal;
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_unirse_comunidad, container, false);
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         Button btnVolver = view.findViewById(R.id.btnVolver);
         EditText etBuscador = view.findViewById(R.id.etBuscadorUnirse);
@@ -45,11 +48,13 @@ public class fragment_unirse_comunidad extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         listaTodas = new ArrayList<>();
         listaOriginal = new ArrayList<>();
+        
         adapter = new ComunidadAdapter(listaTodas);
+        adapter.setEsModoBusqueda(true); // MODO BÚSQUEDA: Icono de añadir/tick
+        
         recyclerView.setAdapter(adapter);
 
-        // Al clicar, ahora guardamos en el ARRAY del usuario
-        adapter.setOnItemClickListener(comunidad -> {
+        adapter.setOnAccionClickListener(comunidad -> {
             unirseAComunidadEnUsuario(comunidad);
         });
 
@@ -94,18 +99,24 @@ public class fragment_unirse_comunidad extends Fragment {
     }
 
     private void unirseAComunidadEnUsuario(Comunidad comunidad) {
-        // IMPORTANTE: Aquí usamos el ID del usuario.
-        // Como estamos en pruebas, usa el ID que tengas en tu Firebase (ej: "usuario_123")
-        String userId = "admin_test";
+        if (comunidad == null || comunidad.getId() == null) return;
+
+        com.google.firebase.auth.FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            Toast.makeText(getContext(), "Sesión no iniciada", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String userId = user.getUid();
 
         db.collection("users").document(userId)
                 .update("misComunidades", FieldValue.arrayUnion(comunidad.getId()))
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getContext(), "Añadida a tu perfil: " + comunidad.getNombre(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "¡Unido con éxito a " + comunidad.getNombre() + "!", Toast.LENGTH_SHORT).show();
+                    // Opcional: volver atrás automáticamente
+                    getParentFragmentManager().popBackStack();
                 })
                 .addOnFailureListener(e -> {
-                    // Si el documento no existe, fallará.
-                    // Asegúrate de que en Firebase exista un documento en "users" llamado "admin_test"
                     Toast.makeText(getContext(), "Error: Debes tener un perfil creado primero", Toast.LENGTH_LONG).show();
                 });
     }

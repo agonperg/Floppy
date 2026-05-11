@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivHistoryIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/groups"
+            app:tint="@color/corporativo" />
+
+        <TextView
+            android:id="@+id/tvHistoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Nombre"
+            android:textColor="@color/corporativo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvHistoryType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comunidad"
+            android:textColor="#85919D"
+            android:textSize="11sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

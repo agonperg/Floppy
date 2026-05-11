@@ -50,6 +50,10 @@ public class Fragment_buscarviaje extends Fragment {
             args.putString("precio", String.valueOf(viaje.getPrecio()));
             args.putString("conductor", viaje.getConductorNombre());
             detalle.setArguments(args);
+            
+            // Registrar visita para el historial reciente
+            VisitManager.registrarVisita("viaje", viaje.getId(), viaje.getOrigen() + " - " + viaje.getDestino());
+
             navigateTo(detalle);
         });
 

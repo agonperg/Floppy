@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class fragment_foro_comunidad extends Fragment {
     private EditText etMensaje;
     private ImageButton btnEnviar, btnVolver;
     private LinearLayout layoutInput;
+    private ListenerRegistration chatListener;
 
     public static fragment_foro_comunidad newInstance(String id, String nombre, String imagen, String admin, String desc) {
         fragment_foro_comunidad fragment = new fragment_foro_comunidad();
@@ -114,6 +116,11 @@ public class fragment_foro_comunidad extends Fragment {
         btnEnviar.setOnClickListener(v -> enviarMensaje());
         escucharMensajes();
 
+        // Registrar visita para el historial reciente
+        if (comunidadId != null && nombreComunidad != null) {
+            VisitManager.registrarVisita("comunidad", comunidadId, nombreComunidad);
+        }
+
         return view;
     }
 
@@ -127,7 +134,7 @@ public class fragment_foro_comunidad extends Fragment {
     }
 
     private void escucharMensajes() {
-        db.collection("Comunidades").document(comunidadId)
+        chatListener = db.collection("Comunidades").document(comunidadId)
                 .collection("mensajes")
                 .orderBy("timestamp", Query.Direction.ASCENDING)
                 .addSnapshotListener((value, error) -> {
@@ -172,5 +179,13 @@ public class fragment_foro_comunidad extends Fragment {
                             .update("ultimoMensaje", texto);
                 })
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Error al enviar", Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (chatListener != null) {
+            chatListener.remove();
+        }
     }
 }

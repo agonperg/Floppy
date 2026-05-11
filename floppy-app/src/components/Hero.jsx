@@ -108,24 +108,16 @@ export default function Hero({ onDownload }) {
 
         {/* Phone mockup */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div
+          <img
+            src="/mockup.png"
+            alt="Floppy App"
             style={{
               width: '220px',
-              height: '420px',
-              background: 'rgba(255,255,255,0.12)',
               borderRadius: '32px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '5rem',
-              border: '2px solid rgba(255,255,255,0.35)',
               boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
-              backdropFilter: 'blur(6px)',
               animation: 'pulse 3s ease-in-out infinite',
-            }}
-          >
-            📱
-          </div>
+              }}
+          />
         </div>
       </div>
     </section>

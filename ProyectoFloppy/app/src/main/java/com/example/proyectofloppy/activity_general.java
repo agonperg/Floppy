@@ -63,14 +63,16 @@ public class activity_general extends AppCompatActivity {
             int itemId = item.getItemId();
             Fragment selectedFragment = null;
 
-            if (itemId == R.id.nav_tablon) {
-                selectedFragment = new fragment_parati();
+            if (itemId == R.id.nav_inicio) {
+                selectedFragment = new fragment_bienvenido();
             } else if (itemId == R.id.nav_comunidades) {
                 selectedFragment = new fragment_comunidades();
             } else if (itemId == R.id.nav_transporte) {
                 selectedFragment = new Fragment_buscarviaje();
             } else if (itemId == R.id.nav_academias) {
                 selectedFragment = new fragment_academias();
+            } else if (itemId == R.id.nav_apuntes) {
+                selectedFragment = new fragment_parati();
             }
 
             if (selectedFragment != null) {
@@ -90,6 +92,7 @@ public class activity_general extends AppCompatActivity {
             if ("desde_login".equals(origen)) {
                 // Main app flow: show home, show BottomNav
                 bottomNav.setVisibility(View.VISIBLE);
+                bottomNav.setSelectedItemId(R.id.nav_inicio);
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
                         .replace(R.id.fragment_container, new fragment_bienvenido())

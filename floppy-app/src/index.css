@@ -1,0 +1,66 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --purple-start: #667eea;
+  --purple-end: #764ba2;
+  --text-dark: #1a1a2e;
+  --text-mid: #444;
+  --text-light: #666;
+  --bg-light: #f9f9fb;
+  --white: #ffffff;
+  --border: #e8e8f0;
+  --shadow-sm: 0 2px 12px rgba(102, 126, 234, 0.12);
+  --shadow-md: 0 6px 24px rgba(102, 126, 234, 0.18);
+  --shadow-lg: 0 12px 40px rgba(102, 126, 234, 0.22);
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --font-display: 'Nunito', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fade-in animation for sections */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+section {
+  animation: fadeUp 0.6s ease both;
+}

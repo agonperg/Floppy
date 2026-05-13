@@ -36,16 +36,16 @@ public class fragment_cuatrimestres extends Fragment {
             });
         }
 
-        ImageView folder1 = view.findViewById(R.id.folder_1);
-        if (folder1 != null) {
-            folder1.setOnClickListener(v -> irATemas("1"));
+        View card1 = view.findViewById(R.id.card_cuatrimestre_1);
+        if (card1 != null) {
+            card1.setOnClickListener(v -> irATemas("1"));
         }
 
-        ImageView folder2 = view.findViewById(R.id.folder_2);
-        if (folder2 != null) folder2.setOnClickListener(v -> irATemas("2"));
+        View card2 = view.findViewById(R.id.card_cuatrimestre_2);
+        if (card2 != null) card2.setOnClickListener(v -> irATemas("2"));
 
-        ImageView folder3 = view.findViewById(R.id.folder_3);
-        if (folder3 != null) folder3.setOnClickListener(v -> irATemas("3"));
+        View card3 = view.findViewById(R.id.card_cuatrimestre_3);
+        if (card3 != null) card3.setOnClickListener(v -> irATemas("3"));
 
     }
 

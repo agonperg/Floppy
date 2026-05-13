@@ -103,7 +103,7 @@ public class fragment_unirse_comunidad extends Fragment {
 
         com.google.firebase.auth.FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
-            Toast.makeText(getContext(), "Sesión no iniciada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.comunidad_sesion_no_iniciada), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -112,12 +112,12 @@ public class fragment_unirse_comunidad extends Fragment {
         db.collection("users").document(userId)
                 .update("misComunidades", FieldValue.arrayUnion(comunidad.getId()))
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getContext(), "¡Unido con éxito a " + comunidad.getNombre() + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.comunidad_unido_exito, comunidad.getNombre()), Toast.LENGTH_SHORT).show();
                     // Opcional: volver atrás automáticamente
                     getParentFragmentManager().popBackStack();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Error: Debes tener un perfil creado primero", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.comunidad_error_perfil), Toast.LENGTH_LONG).show();
                 });
     }
 }

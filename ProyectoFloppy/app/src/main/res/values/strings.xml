@@ -92,6 +92,75 @@
 
     <string name="msg_cargando">Verificando cuenta…</string>
     <string name="msg_error_auth">Error al detectar sesión</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Comunidades -->
+    <string name="comunidad_buscar_mis_comunidades">Buscar mis comunidades...</string>
+    <string name="comunidad_nueva_titulo">Nueva Comunidad</string>
+    <string name="comunidad_toca_cambiar_foto">Toca para cambiar la foto</string>
+    <string name="comunidad_nombre_carrera">Nombre de la carrera</string>
+    <string name="comunidad_descripcion_label">Descripción de la comunidad</string>
+    <string name="comunidad_crear_boton">Crear Comunidad</string>
+    <string name="comunidad_nombre_placeholder">Nombre Comunidad</string>
+    <string name="comunidad_solo_admin">Solo el administrador puede escribir</string>
+    <string name="comunidad_escribe_mensaje">Escribe un mensaje...</string>
+    <string name="comunidad_volver_mis">Volver a mis comunidades</string>
+    <string name="comunidad_buscar">Buscar</string>
+    <string name="comunidad_abandonar_confirm_titulo">Abandonar comunidad</string>
+    <string name="comunidad_abandonar_confirm_msg">¿Estás seguro de que quieres salir de %1$s? Podrás volver a unirte más tarde desde el buscador.</string>
+    <string name="comunidad_salir_si">Sí, salir</string>
+    <string name="comunidad_cancelar">Cancelar</string>
+    <string name="comunidad_has_salido">Has salido de la comunidad</string>
+    <string name="comunidad_limpiando_db">Limpiando base de datos...</string>
+    <string name="comunidad_db_actualizada">Base de datos actualizada con comunidades reales.</string>
+    <string name="comunidad_escribe_nombre_error">Escribe un nombre</string>
+    <string name="comunidad_subiendo_imagen">Subiendo imagen...</string>
+    <string name="comunidad_error_subir_imagen">Error subiendo imagen</string>
+    <string name="comunidad_sin_descripcion">Sin descripción</string>
+    <string name="comunidad_creada_ok">¡Comunidad creada!</string>
+    <string name="comunidad_sin_descripcion_disp">Sin descripción disponible.</string>
+    <string name="comunidad_cerrar">Cerrar</string>
+    <string name="comunidad_admin_label">Admin</string>
+    <string name="comunidad_error_enviar">Error al enviar</string>
+    <string name="comunidad_sesion_no_iniciada">Sesión no iniciada</string>
+    <string name="comunidad_unido_exito">¡Unido con éxito a %1$s!</string>
+    <string name="comunidad_error_perfil">Error: Debes tener un perfil creado primero</string>
+
+    <!-- Bienvenido -->
+    <string name="home_hola">Hola,</string>
+    <string name="home_usuario_floppy">Usuario Floppy</string>
+    <string name="home_ultimo_uja">Último de la UJA</string>
+    <string name="home_lo_ultimo_visitado">Lo último visitado</string>
+    <string name="home_novedades_floppy">Novedades en Floppy</string>
+    <string name="home_cargando">Cargando...</string>
+    <string name="home_tip_dia">Tip del día 💡</string>
+    <string name="home_tip_mensaje">¿Sabías que puedes compartir tus apuntes y ganar puntos de reputación? ¡Floppy es mejor entre todos!</string>
+    <string name="home_nueva_comunidad">Nueva comunidad creada</string>
+    <string name="home_nuevo_viaje_publicado">Nuevo viaje publicado</string>
+
+    <!-- Ajustes Cuenta -->
+    <string name="ajustes_titulo">Configuración</string>
+    <string name="ajustes_datos_personales">DATOS PERSONALES</string>
+    <string name="ajustes_nombre">Nombre</string>
+    <string name="ajustes_apellidos">Apellidos</string>
+    <string name="ajustes_fecha_nacimiento">Fecha de Nacimiento</string>
+    <string name="ajustes_estudios">ESTUDIOS</string>
+    <string name="ajustes_grado">Grado</string>
+    <string name="ajustes_selecciona_grado">Selecciona tu grado</string>
+    <string name="ajustes_curso">Curso</string>
+    <string name="ajustes_selecciona_curso">Selecciona tu curso</string>
+    <string name="ajustes_guardar_cambios">GUARDAR CAMBIOS</string>
+
+    <!-- Viajes -->
+    <string name="viaje_donde_ir">¿A donde quieres ir?</string>
+    <string name="viaje_desde_origen">Desde: Origen</string>
+    <string name="viaje_hasta_destino">Hasta: Destino</string>
+    <string name="viaje_buscar_btn">Buscar</string>
+    <string name="viaje_o_publica">O publica tu viaje</string>
+    <string name="viaje_no_encontrados">No se encontraron viajes</string>
+    <string name="viaje_detalles_titulo">Detalles del Viaje:</string>
+    <string name="viaje_conductor_label">Conductor:</string>
+    <string name="viaje_reservar_plaza">Reservar Plaza</string>
+    <string name="viaje_volver">Volver</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

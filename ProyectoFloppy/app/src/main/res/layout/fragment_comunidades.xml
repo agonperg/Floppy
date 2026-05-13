@@ -18,7 +18,7 @@
             android:id="@+id/tvTituloComunidades"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Comunidades"
+            android:text="@string/titulo_comunidades"
             android:textColor="@color/corporativo"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -89,7 +89,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="@android:color/transparent"
-                    android:hint="Buscar mis comunidades..."
                     android:paddingHorizontal="12dp"
                     android:textSize="14sp" />
             </LinearLayout>

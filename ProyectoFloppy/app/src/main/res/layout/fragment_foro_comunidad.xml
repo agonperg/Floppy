@@ -55,7 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Nombre Comunidad"
+                android:text="@string/comunidad_nombre_placeholder"
                 android:textColor="@color/corporativo"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -67,7 +67,7 @@
                 android:id="@+id/tvSubtituloForo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Solo el administrador puede escribir"
+                android:text="@string/comunidad_solo_admin"
                 android:textColor="#85919D"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_input_chat"
-            android:hint="Escribe un mensaje..."
+            android:hint="@string/comunidad_escribe_mensaje"
             android:padding="12dp"
             android:textSize="14sp" />
 

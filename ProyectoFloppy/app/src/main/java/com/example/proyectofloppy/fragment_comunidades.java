@@ -96,20 +96,6 @@ public class fragment_comunidades extends Fragment {
         return view;
     }
 
-    private void abandonarComunidad(Comunidad comunidad) {
-        new AlertDialog.Builder(getContext())
-                .setTitle("Abandonar comunidad")
-                .setMessage("¿Estás seguro de que quieres salir de " + comunidad.getNombre() + "? Podrás volver a unirte más tarde desde el buscador.")
-                .setPositiveButton("Sí, salir", (dialog, which) -> {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    if (user == null) return;
-                    db.collection("users").document(user.getUid())
-                            .update("misComunidades", FieldValue.arrayRemove(comunidad.getId()))
-                            .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Has salido de la comunidad", Toast.LENGTH_SHORT).show());
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
-    }
 
     @Override
     public void onResume() {
@@ -202,7 +188,7 @@ public class fragment_comunidades extends Fragment {
     }
 
     private void seedTestData() {
-        Toast.makeText(getContext(), "Limpiando base de datos...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.comunidad_limpiando_db), Toast.LENGTH_SHORT).show();
         db.collection("Comunidades").get().addOnSuccessListener(querySnapshot -> {
             for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
                 doc.getReference().delete();
@@ -251,7 +237,25 @@ public class fragment_comunidades extends Fragment {
                 });
             });
         }
-        Toast.makeText(getContext(), "Base de datos actualizada con comunidades reales.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.comunidad_db_actualizada), Toast.LENGTH_SHORT).show();
+    }
+
+    private void abandonarComunidad(Comunidad comunidad) {
+        new AlertDialog.Builder(getContext())
+                .setTitle(getString(R.string.comunidad_abandonar_confirm_titulo))
+                .setMessage(getString(R.string.comunidad_abandonar_confirm_msg, comunidad.getNombre()))
+                .setPositiveButton(getString(R.string.comunidad_salir_si), (dialog, which) -> {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null) {
+                        db.collection("users").document(user.getUid())
+                                .update("misComunidades", FieldValue.arrayRemove(comunidad.getId()))
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(getContext(), getString(R.string.comunidad_has_salido), Toast.LENGTH_SHORT).show();
+                                });
+                    }
+                })
+                .setNegativeButton(getString(R.string.comunidad_cancelar), null)
+                .show();
     }
 
     private void navegarAFragment(Fragment fragment) {

@@ -11,10 +11,10 @@
         android:id="@+id/btn_back_crear"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/flecha"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="#0C3E69" />
+        app:tint="@color/corporativo" />
 
     <TextView
         android:id="@+id/tv_title_crear"

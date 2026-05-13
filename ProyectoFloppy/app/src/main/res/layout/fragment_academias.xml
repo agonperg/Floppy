@@ -11,10 +11,10 @@
         android:id="@+id/btn_back_academias"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/flecha"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#0C3E69" />
+        app:tint="@color/corporativo" />
 
     <LinearLayout
         android:id="@+id/ll_top_bar"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Academias"
+        android:text="@string/title_academias"
         android:textColor="#0C3E69"
         android:textSize="32sp"
         android:textStyle="bold"

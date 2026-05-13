@@ -76,9 +76,9 @@ public class fragment_ajustesCuenta extends Fragment {
 
         etNombre = view.findViewById(R.id.etNombre);
         etApellidos = view.findViewById(R.id.etApellidos);
-        etFecha = view.findViewById(R.id.etFecha);
-        tvGrado = view.findViewById(R.id.tvGrado);
-        tvCurso = view.findViewById(R.id.tvCurso);
+        etFecha = view.findViewById(R.id.etFechaNacimiento);
+        tvGrado = view.findViewById(R.id.tvGradoSeleccionado);
+        tvCurso = view.findViewById(R.id.tvCursoSeleccionado);
         ivFotoPerfil = view.findViewById(R.id.ivFotoPerfil);
         ivSettings = view.findViewById(R.id.ivSettings);
         btnGuardar = view.findViewById(R.id.btnGuardar);
@@ -89,14 +89,14 @@ public class fragment_ajustesCuenta extends Fragment {
         configurarSelectorFecha();
         
         // Nuevos touch targets para grado y curso (más intuitivos)
-        view.findViewById(R.id.btnSelectGrado).setOnClickListener(v -> abrirSelectorGrado());
-        view.findViewById(R.id.btnSelectCurso).setOnClickListener(v -> abrirSelectorCurso());
+        view.findViewById(R.id.cardGrado).setOnClickListener(v -> abrirSelectorGrado());
+        view.findViewById(R.id.cardCurso).setOnClickListener(v -> abrirSelectorCurso());
 
         // Selector de foto
         View.OnClickListener openPicker = v -> pickMedia.launch(new PickVisualMediaRequest.Builder()
                 .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build());
-        view.findViewById(R.id.btnCambiarFoto).setOnClickListener(openPicker);
+        view.findViewById(R.id.cardFoto).setOnClickListener(openPicker);
         ivFotoPerfil.setOnClickListener(openPicker);
 
         if (btnGuardar != null) {

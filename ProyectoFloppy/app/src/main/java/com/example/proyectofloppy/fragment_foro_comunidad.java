@@ -94,8 +94,8 @@ public class fragment_foro_comunidad extends Fragment {
         header.setOnClickListener(v -> {
             new AlertDialog.Builder(getContext())
                     .setTitle(nombreComunidad)
-                    .setMessage(descripcion != null ? descripcion : "Sin descripción disponible.")
-                    .setPositiveButton("Cerrar", null)
+                    .setMessage(descripcion != null ? descripcion : getString(R.string.comunidad_sin_descripcion_disp))
+                    .setPositiveButton(getString(R.string.comunidad_cerrar), null)
                     .show();
         });
 
@@ -162,7 +162,7 @@ public class fragment_foro_comunidad extends Fragment {
         if (texto.isEmpty()) return;
 
         String currentUserId = mAuth.getCurrentUser().getUid();
-        String currentUserName = "Admin"; 
+        String currentUserName = getString(R.string.comunidad_admin_label); 
 
         Map<String, Object> mensaje = new HashMap<>();
         mensaje.put("contenido", texto);
@@ -178,7 +178,7 @@ public class fragment_foro_comunidad extends Fragment {
                     db.collection("Comunidades").document(comunidadId)
                             .update("ultimoMensaje", texto);
                 })
-                .addOnFailureListener(e -> Toast.makeText(getContext(), "Error al enviar", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(getContext(), getString(R.string.comunidad_error_enviar), Toast.LENGTH_SHORT).show());
     }
 
     @Override

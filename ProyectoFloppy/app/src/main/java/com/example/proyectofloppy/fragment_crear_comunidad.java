@@ -95,7 +95,7 @@ public class fragment_crear_comunidad extends Fragment {
             String descripcion = etDescripcion.getText().toString().trim();
 
             if (nombre.isEmpty()) {
-                etNombre.setError("Escribe un nombre");
+                etNombre.setError(getString(R.string.comunidad_escribe_nombre_error));
                 return;
             }
 
@@ -110,7 +110,7 @@ public class fragment_crear_comunidad extends Fragment {
     }
 
     private void subirAFirebaseConImagen(String nombre, String descripcion, Uri uri) {
-        Toast.makeText(getContext(), "Subiendo imagen...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.comunidad_subiendo_imagen), Toast.LENGTH_SHORT).show();
 
         MediaManager.get().upload(uri)
                 .option("resource_type", "image")
@@ -128,7 +128,7 @@ public class fragment_crear_comunidad extends Fragment {
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
                         Log.e("Cloudinary", "Error: " + error.getDescription());
-                        Toast.makeText(getContext(), "Error subiendo imagen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.comunidad_error_subir_imagen), Toast.LENGTH_SHORT).show();
                         guardarEnFirebase(nombre, descripcion, null);
                     }
 
@@ -142,7 +142,7 @@ public class fragment_crear_comunidad extends Fragment {
         
         Map<String, Object> nuevaComunidad = new HashMap<>();
         nuevaComunidad.put("nombre", nombre);
-        nuevaComunidad.put("descripcion", descripcion.isEmpty() ? "Sin descripción" : descripcion);
+        nuevaComunidad.put("descripcion", descripcion.isEmpty() ? getString(R.string.comunidad_sin_descripcion) : descripcion);
         nuevaComunidad.put("adminId", adminId);
         nuevaComunidad.put("imagenUrl", urlImagen);
         nuevaComunidad.put("ubicacion", "Universidad de Jaén");
@@ -153,7 +153,7 @@ public class fragment_crear_comunidad extends Fragment {
                     publicarMensajeBienvenida(comunidadId, nombre);
                     unirAdminAComunidad(adminId, comunidadId);
 
-                    Toast.makeText(getContext(), "¡Comunidad creada!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.comunidad_creada_ok), Toast.LENGTH_SHORT).show();
                     getParentFragmentManager().popBackStack();
                 })
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show());

@@ -43,6 +43,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")      // Autenticación
     implementation("com.google.firebase:firebase-storage")   // Para guardar los PDFs
     implementation("com.google.firebase:firebase-firestore") // Base de datos para los textos y enlaces
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
     // 3. DEPENDENCIAS DE ANDROID Y UI
     implementation("androidx.appcompat:appcompat:1.7.1")
@@ -64,4 +65,6 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+
+
 }

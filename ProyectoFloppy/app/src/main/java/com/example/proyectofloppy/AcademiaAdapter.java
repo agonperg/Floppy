@@ -11,6 +11,15 @@ import java.util.List;
 public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.AcademiaViewHolder> {
 
     private List<Academia> academiaList;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Academia academia);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public AcademiaAdapter(List<Academia> academiaList) {
         this.academiaList = academiaList;
@@ -29,6 +38,12 @@ public class AcademiaAdapter extends RecyclerView.Adapter<AcademiaAdapter.Academ
         holder.tvNombre.setText(academia.getNombre());
         holder.tvDireccion.setText(academia.getDireccion());
         holder.tvDescripcion.setText(academia.getDescripcion());
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(academia);
+            }
+        });
     }
 
     @Override

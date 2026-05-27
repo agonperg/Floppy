@@ -21,19 +21,10 @@
             android:padding="16dp"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@android:drawable/ic_menu_mapmode"
-                android:background="@drawable/fondo_gris_redondeado"
-                android:padding="6dp"
-                app:tint="#0C3E69"/>
-
             <TextView
                 android:id="@+id/tv_item_nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Nombre Academia"
                 android:textColor="#0C3E69"
                 android:textStyle="bold"

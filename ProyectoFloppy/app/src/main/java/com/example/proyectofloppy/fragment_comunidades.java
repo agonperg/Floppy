@@ -50,7 +50,11 @@ public class fragment_comunidades extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         ImageButton btnCrear = view.findViewById(R.id.btnCrearComunidad);
-        ImageButton btnUnirme = view.findViewById(R.id.btnUnirme);
+        View cardExplorar = view.findViewById(R.id.cardExplorarComunidades);
+
+        if (cardExplorar != null) {
+            cardExplorar.setOnClickListener(v -> navegarAFragment(new fragment_unirse_comunidad()));
+        }
 
         // Truco para re-seed: Click largo en el título
         view.findViewById(R.id.tvTituloComunidades).setOnLongClickListener(v -> {
@@ -89,7 +93,6 @@ public class fragment_comunidades extends Fragment {
         }
 
         btnCrear.setOnClickListener(v -> navegarAFragment(new fragment_crear_comunidad()));
-        btnUnirme.setOnClickListener(v -> navegarAFragment(new fragment_unirse_comunidad()));
 
         iniciarEscuchaUsuario();
 

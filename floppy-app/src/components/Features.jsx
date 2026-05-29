@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 const features = [
   {
     icon: '🎓',
@@ -33,69 +31,34 @@ const features = [
   },
 ]
 
-function FeatureCard({ icon, title, desc }) {
-  const [hovered, setHovered] = useState(false)
+const delays = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6']
 
+function FeatureCard({ icon, title, desc, delay }) {
   return (
-    <div
-      style={{
-        background: 'white',
-        padding: '2rem',
-        borderRadius: '14px',
-        textAlign: 'center',
-        transition: 'all 0.3s',
-        borderLeft: '4px solid #667eea',
-        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
-        boxShadow: hovered
-          ? '0 12px 32px rgba(102,126,234,0.2)'
-          : '0 2px 10px rgba(0,0,0,0.06)',
-        cursor: 'default',
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div style={{ fontSize: '2.8rem', marginBottom: '1rem' }}>{icon}</div>
-      <h3
-        style={{
-          fontSize: '1.15rem',
-          marginBottom: '0.75rem',
-          color: '#667eea',
-          fontFamily: 'var(--font-display)',
-          fontWeight: 800,
-        }}
-      >
-        {title}
-      </h3>
-      <p style={{ color: '#666', fontSize: '0.93rem', lineHeight: 1.65 }}>{desc}</p>
+    <div className={`feature-card reveal ${delay}`}>
+      <div className="feature-icon-wrap">{icon}</div>
+      <h3 className="feature-title">{title}</h3>
+      <p className="feature-desc">{desc}</p>
     </div>
   )
 }
 
 export default function Features() {
   return (
-    <section id="features" style={{ padding: '5rem 2rem', background: '#f9f9fb' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <h2
-          style={{
-            textAlign: 'center',
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-            fontWeight: 900,
-            marginBottom: '3rem',
-            color: '#1a1a2e',
-          }}
-        >
-          Características Principales
-        </h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.75rem',
-          }}
-        >
-          {features.map((f) => (
-            <FeatureCard key={f.title} {...f} />
+    <section id="features" className="features">
+      <div className="features-inner">
+        <div className="section-header reveal">
+          <span className="section-tag">¿Qué ofrece Floppy?</span>
+          <h2 className="section-title">Todo lo que necesitas para aprender</h2>
+          <div className="section-title-line" />
+          <p className="section-subtitle">
+            Floppy reúne las herramientas educativas más importantes en una sola aplicación,
+            diseñada para estudiantes y docentes.
+          </p>
+        </div>
+        <div className="features-grid">
+          {features.map((f, i) => (
+            <FeatureCard key={f.title} {...f} delay={delays[i]} />
           ))}
         </div>
       </div>

@@ -259,6 +259,7 @@
                     android:layout_height="55dp"
                     android:layout_marginBottom="40dp"
                     android:backgroundTint="@color/corporativo"
+                    android:textColor="@color/white"
                     android:text="@string/ajustes_guardar_cambios"
                     android:textAllCaps="false"
                     android:textSize="16sp"

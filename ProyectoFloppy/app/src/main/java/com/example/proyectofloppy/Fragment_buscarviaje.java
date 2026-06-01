@@ -70,7 +70,7 @@ public class Fragment_buscarviaje extends Fragment {
         tvPublish.setOnClickListener(v -> navigateTo(new Fragment_publicarviaje()));
 
         if (btnBack != null) {
-            btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
+            btnBack.setOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
         }
 
         return view;

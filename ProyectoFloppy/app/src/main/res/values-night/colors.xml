@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF121212</color>
+
+    <!-- Corporativo se mantiene pero un pelín más claro para contrastar -->
+    <color name="corporativo">#508ABA</color>
+    <color name="azul_floppy">#508ABA</color>
+    <color name="azul_claro_floppy">#7BAED4</color>
+
+    <!-- Fondos -->
+    <color name="background">#FF121212</color>
+    <color name="gris_fondo_card">#FF1E1E1E</color>
+    <color name="lila_suave">#FF2A2A3A</color>
+
+    <!-- Textos -->
+    <color name="text_primary">#FFFFFFFF</color>
+
+    <!-- Botones -->
+    <color name="button_background">#FF1E1E1E</color>
+    <color name="button_text">#FFFFFFFF</color>
+    <color name="button_border">#FF333333</color>
+    <color name="fondoboton">#FF2C2C2C</color>
+
+    <!-- Búsqueda -->
+    <color name="search_background">#FF1E1E1E</color>
+    <color name="search_border">#FF2C2C2C</color>
+
+    <!-- Checkboxes -->
+    <color name="checkbox_selected">#FF64B5F6</color>
+    <color name="checkbox_unselected">#FF616161</color>
+    <color name="button_selected_background">#FF1A3A5C</color>
+
+    <!-- Botón publicar -->
+    <color name="publish_button_background">#FF1565C0</color>
+    <color name="publish_button_text">#FFFFFFFF</color>
+</resources>

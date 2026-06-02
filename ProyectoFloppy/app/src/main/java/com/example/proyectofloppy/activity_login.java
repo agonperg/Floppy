@@ -3,6 +3,7 @@ package com.example.proyectofloppy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,10 +40,17 @@ public class activity_login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            irAGeneral();
+            return;
+        }
         setContentView(R.layout.activity_login);
 
-        auth = FirebaseAuth.getInstance();
+
+
 
         // Configurar Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

@@ -33,7 +33,7 @@ export default function Hero({ onDownload }) {
         <div className="hero-mockup hero-anim-4">
           <div className="hero-mockup-ring hero-mockup-ring-1" />
           <div className="hero-mockup-ring hero-mockup-ring-2" />
-          <img src="/mockup.png" alt="Floppy App en móvil" />
+          <img src={`${import.meta.env.BASE_URL}mockup.png`} alt="Floppy App en móvil" />   
         </div>
       </div>
     </section>

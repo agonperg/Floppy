@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,9 +28,10 @@ import java.util.Set;
 public class fragment_bienvenido extends Fragment {
 
     private TextView tvUserName, tvNewCommunityName, tvNewTripInfo, tvVibeTitle, tvVibeMessage;
+    private ImageView fotoPerfil;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    private ListenerRegistration historyListener, newsListener;
+    private ListenerRegistration historyListener, newsListener, userListener;
 
     public fragment_bienvenido() {
     }
@@ -47,15 +49,13 @@ public class fragment_bienvenido extends Fragment {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        // Inicializar vistas
         tvUserName = view.findViewById(R.id.tvUserName);
         tvNewCommunityName = view.findViewById(R.id.tvNewCommunityName);
         tvNewTripInfo = view.findViewById(R.id.tvNewTripInfo);
         tvVibeTitle = view.findViewById(R.id.tvVibeTitle);
         tvVibeMessage = view.findViewById(R.id.tvVibeMessage);
-        ImageView fotoPerfil = view.findViewById(R.id.imageUserInfo);
+        fotoPerfil = view.findViewById(R.id.imageUserInfo);
 
-        // Mostrar barra de navegación
         if (getActivity() instanceof activity_general) {
             ((activity_general) getActivity()).setBottomNavigationVisibility(View.VISIBLE);
         }
@@ -64,7 +64,6 @@ public class fragment_bienvenido extends Fragment {
             fotoPerfil.setOnClickListener(v -> irAAjustes());
         }
 
-        // Cargar datos dinámicos
         cargarDatosUsuario();
         cargarNovedades();
         cargarNoticias(view);
@@ -91,13 +90,25 @@ public class fragment_bienvenido extends Fragment {
     private void cargarDatosUsuario() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            db.collection("users").document(user.getUid()).get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
+            userListener = db.collection("users").document(user.getUid())
+                    .addSnapshotListener((documentSnapshot, error) -> {
+                        if (error != null) return;
+                        if (documentSnapshot != null && documentSnapshot.exists()) {
                             String nombre = documentSnapshot.getString("nombre");
                             if (nombre != null && !nombre.isEmpty()) {
                                 String formatted = nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
                                 tvUserName.setText(formatted + "! 👋");
+                            }
+
+                            String fotoUrl = documentSnapshot.getString("fotoUrl");
+                            if (fotoUrl != null && !fotoUrl.isEmpty() && fotoUrl.startsWith("https://")) {
+                                if (isAdded() && getContext() != null && fotoPerfil != null) {
+                                    Glide.with(this)
+                                            .load(fotoUrl)
+                                            .placeholder(R.drawable.perfil)
+                                            .error(R.drawable.perfil)
+                                            .into(fotoPerfil);
+                                }
                             }
                         }
                     });
@@ -108,15 +119,13 @@ public class fragment_bienvenido extends Fragment {
         LinearLayout layoutNews = view.findViewById(R.id.layoutNews);
         if (layoutNews == null) return;
 
-        // Intentar cargar noticias AUTOMÁTICAMENTE desde el Twitter de la UJA (via RSS)
         UjaTwitterService.fetchLatestTweets(tweets -> {
             if (!isAdded() || getContext() == null) return;
-            
+
             layoutNews.removeAllViews();
             LayoutInflater inflater = LayoutInflater.from(getContext());
 
             if (tweets.isEmpty()) {
-                // Si falla el servicio automático, mostrar las de ejemplo como fallback
                 agregarNoticiaEjemplo(layoutNews, inflater, "Abierto el plazo de matrícula para los cursos de verano 2026. ¡No te quedes sin tu plaza! 🎓");
                 agregarNoticiaEjemplo(layoutNews, inflater, "Mañana comienza la feria del libro en el edificio Zabaleta. ¡Pásate a vernos! 📚✨");
                 agregarNoticiaEjemplo(layoutNews, inflater, "Nueva convocatoria de becas de movilidad internacional disponible. Consulta las bases. ✈️");
@@ -132,9 +141,8 @@ public class fragment_bienvenido extends Fragment {
         View card = inflater.inflate(R.layout.item_noticia, container, false);
         TextView tvContent = card.findViewById(R.id.tvNewsContent);
         TextView tvTime = card.findViewById(R.id.tvNewsTime);
-        
+
         tvContent.setText(tweet.content);
-        // Simplificamos la fecha para que se vea bien
         String fecha = tweet.date.length() > 16 ? tweet.date.substring(0, 16) : tweet.date;
         tvTime.setText(fecha);
 
@@ -151,7 +159,7 @@ public class fragment_bienvenido extends Fragment {
         View card = inflater.inflate(R.layout.item_noticia, container, false);
         TextView tvContent = card.findViewById(R.id.tvNewsContent);
         TextView tvTime = card.findViewById(R.id.tvNewsTime);
-        
+
         tvContent.setText(texto);
         tvTime.setText("Noticia de ejemplo");
 
@@ -165,9 +173,8 @@ public class fragment_bienvenido extends Fragment {
     }
 
     private void cargarNovedades() {
-        // Última comunidad
         db.collection("Comunidades")
-                .orderBy("nombre", Query.Direction.DESCENDING) // Fallback si no hay timestamp
+                .orderBy("nombre", Query.Direction.DESCENDING)
                 .limit(1)
                 .get()
                 .addOnSuccessListener(querySnapshot -> {
@@ -177,7 +184,6 @@ public class fragment_bienvenido extends Fragment {
                     }
                 });
 
-        // Último viaje
         db.collection("viajes")
                 .orderBy("fecha", Query.Direction.DESCENDING)
                 .limit(1)
@@ -195,11 +201,11 @@ public class fragment_bienvenido extends Fragment {
     private void mostrarMensajeAleatorio() {
         String[] titulos = {"Tip del día 💡", "¡Vamos Floppy! 🚀", "¿Sabías qué? 🤔", "Comunidad activa ✨"};
         String[] mensajes = {
-            "¿Sabías que puedes compartir tus apuntes y ganar puntos de reputación?",
-            "Revisa la sección de transporte, ¡seguro que alguien va hacia tu destino!",
-            "Únete a la comunidad de tu grado para no perderte ningún apunte importante.",
-            "Recuerda que puedes personalizar tu perfil desde los ajustes.",
-            "¡Hoy es un gran día para aprender algo nuevo en el edificio Zabaleta!"
+                "¿Sabías que puedes compartir tus apuntes y ganar puntos de reputación?",
+                "Revisa la sección de transporte, ¡seguro que alguien va hacia tu destino!",
+                "Únete a la comunidad de tu grado para no perderte ningún apunte importante.",
+                "Recuerda que puedes personalizar tu perfil desde los ajustes.",
+                "¡Hoy es un gran día para aprender algo nuevo en el edificio Zabaleta!"
         };
 
         Random r = new Random();
@@ -215,7 +221,6 @@ public class fragment_bienvenido extends Fragment {
         View tvHistoryTitle = view.findViewById(R.id.tvHistoryTitle);
         View hsvHistory = view.findViewById(R.id.hsvHistory);
 
-        // Quitamos getActivity() y lo gestionamos manualmente para evitar errores de FragmentManager
         historyListener = db.collection("users").document(user.getUid())
                 .addSnapshotListener((doc, error) -> {
                     if (error != null) return;
@@ -225,7 +230,7 @@ public class fragment_bienvenido extends Fragment {
                             Collections.reverse(historialRaw);
                             List<Map<String, Object>> historialFiltrado = new ArrayList<>();
                             Set<String> idsVisitados = new HashSet<>();
-                            
+
                             for (Map<String, Object> item : historialRaw) {
                                 String id = (String) item.get("id");
                                 if (id != null && !idsVisitados.contains(id)) {
@@ -252,7 +257,7 @@ public class fragment_bienvenido extends Fragment {
 
     private void agregarItemHistorial(LinearLayout container, LayoutInflater inflater, Map<String, Object> data) {
         View card = inflater.inflate(R.layout.item_historial, container, false);
-        
+
         TextView tvName = card.findViewById(R.id.tvHistoryName);
         TextView tvType = card.findViewById(R.id.tvHistoryType);
         ImageView ivIcon = card.findViewById(R.id.ivHistoryIcon);
@@ -305,6 +310,9 @@ public class fragment_bienvenido extends Fragment {
         if (newsListener != null) {
             newsListener.remove();
         }
+        if (userListener != null) {
+            userListener.remove();
+        }
     }
 
     private void irAAjustes() {
@@ -314,4 +322,4 @@ public class fragment_bienvenido extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-}
+}
